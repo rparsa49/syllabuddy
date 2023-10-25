@@ -10,8 +10,8 @@ function App() {
     <Router>
       <NavBar />
       <Routes>
-        <Route path="/title" element={<LandingPage />} />
-        <Route path="/home" element={<LandingPage />} />
+        {/* Set "/home" as the default route */}
+        <Route path="/" element={<LandingPage />} />
         <Route path="/register" element={<RegistrationPage />} />
         <Route path="/login" element={<LoginPage />} />
       </Routes>
