@@ -1,1 +1,22 @@
-// this will be the login page
+import React from "react";
+
+const Login = () => {
+  return (
+    <div>
+      <header>
+        <h1>Login to Syllabuddy</h1>
+      </header>
+      <section id ="login">
+      {
+        <form>
+         <label for ="email">email</label>
+         <input> type = "email" placeholder ="email@email.edu" </input> 
+         </form>
+
+
+      }</section>
+    </div>
+  );
+};
+
+export default Login;
