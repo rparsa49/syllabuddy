@@ -11,7 +11,7 @@ export default function NavBar() {
           </span>
         </Link>
         <nav className="md:mr-auto md:ml-4 md:py-1 md:pl-4 md:border-l text-background">
-          <Link to="/home" className="mr-5 hover:text-accent">
+          <Link to="/" className="mr-5 hover:text-accent">
             Home
           </Link>
           <Link to="/register" className="mr-5 hover:text-accent">
