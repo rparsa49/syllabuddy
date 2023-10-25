@@ -1,14 +1,21 @@
 import React from "react";
-import RegistrationPage from "./components/register";
-import LandingPage from "./components/landing";
-import Login from "./components/login";
+import { BrowserRouter as Router, Route, Routes } from "react-router-dom";
 import NavBar from "./components/navbar";
+import LandingPage from "./components/landing";
+import RegistrationPage from "./components/register";
+import LoginPage from "./components/login";
+
 function App() {
   return (
-    <main>
+    <Router>
       <NavBar />
-      <LandingPage />
-    </main>
+      <Routes>
+        <Route path="/title" element={<LandingPage />} />
+        <Route path="/home" element={<LandingPage />} />
+        <Route path="/register" element={<RegistrationPage />} />
+        <Route path="/login" element={<LoginPage />} />
+      </Routes>
+    </Router>
   );
 }
 
