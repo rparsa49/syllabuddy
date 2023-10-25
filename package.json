@@ -38,10 +38,7 @@
     ]
   },
   "devDependencies": {
-<<<<<<< HEAD
-=======
     "daisyui": "^3.9.3",
->>>>>>> upstream/main
     "tailwindcss": "^3.3.4"
   }
 }
