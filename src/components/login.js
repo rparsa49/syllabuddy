@@ -10,7 +10,10 @@ const Login = () => {
       {
         <form>
          <label for ="email">email</label>
-         <input> type = "email" placeholder ="email@email.edu" </input> 
+         <input type = "email" placeholder ="email@email.edu" id ="email" name="email"> </input> 
+         <label for ="password">password</label>
+         <input type = "password" placeholder ="Password shhhh" id ="password" name="password"> </input>  
+
          </form>
 
 
