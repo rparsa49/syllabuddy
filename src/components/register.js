@@ -7,6 +7,7 @@ const RegistrationPage = () => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [phoneNumber, setPhoneNumber] = useState("");
+  const [registrationError, setRegistrationError] = useState(""); // New state for error message
 
   const handleRoleChange = (e) => {
     setRole(e.target.value);
@@ -28,39 +29,43 @@ const RegistrationPage = () => {
     setPhoneNumber(e.target.value);
   };
 
-const handleSubmit = async (e) => {
-  e.preventDefault();
+  const handleSubmit = async (e) => {
+    e.preventDefault();
 
-const userData = {
-  email,
-  password,
-  role,
-  selectedUniversity,
-  phoneNumber, 
-};
+    const userData = {
+      email,
+      password,
+      role,
+      selectedUniversity,
+      phoneNumber,
+    };
 
+    try {
+      const response = await fetch("http://127.0.0.1:5000/register", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify(userData),
+      });
 
-  try {
-    const response = await fetch("http://127.0.0.1:5000/register", {
-    method: "POST",
-    headers: {
-      "Content-Type": "application/json",
-    },
-    body: JSON.stringify(userData),
-  });
-
-
-    if (response.status === 201) {
-      // User registration was successful, navigate to a success screen
-      console.log("User registered successfully");
-    } else {
-      // Handle registration errors
-      console.error("User registration failed");
+      if (response.status === 201) {
+        // User registration was successful, navigate to a success screen
+        console.log("User registered successfully");
+        setRegistrationError(""); // Clear any previous error message
+      } else if (response.status === 409) {
+        // User already exists with the provided email or phone number
+        setRegistrationError(
+          "An account already exists with this information. Please log in."
+        );
+      } else {
+        // Handle other registration errors
+        console.error("User registration failed");
+      }
+    } catch (error) {
+      console.error("Error while registering user:", error);
     }
-  } catch (error) {
-    console.error("Error while registering user:", error);
-  }
-};
+  };
 
   return (
     <section id="register">
@@ -166,6 +171,9 @@ const userData = {
                 >
                   Submit
                 </button>
+                {registrationError && (
+                  <p className="text-red-600">{registrationError}</p>
+                )}
               </div>
             </form>
           </div>
