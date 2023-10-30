@@ -1,5 +1,4 @@
 import React, { useState } from "react";
-import NavBar from "./navbar"; // Import the NavBar component
 import universities from "./universities.json";
 
 const RegistrationPage = () => {
@@ -7,6 +6,8 @@ const RegistrationPage = () => {
   const [selectedUniversity, setSelectedUniversity] = useState("");
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
+  const [phoneNumber, setPhoneNumber] = useState("");
+  const [registrationError, setRegistrationError] = useState(""); // New state for error message
 
   const handleRoleChange = (e) => {
     setRole(e.target.value);
@@ -24,37 +25,47 @@ const RegistrationPage = () => {
     setPassword(e.target.value);
   };
 
-const handleSubmit = async (e) => {
-  e.preventDefault();
-
-  const userData = {
-    email,
-    password,
-    role,
-    selectedUniversity,
+  const handlePhoneNumberChange = (e) => {
+    setPhoneNumber(e.target.value);
   };
 
-  try {
-    // todo: replace with actual endpoint name
-    const response = await fetch("https://your-api-endpoint.com/register", {
-      method: "POST",
-      headers: {
-        "Content-Type": "application/json",
-      },
-      body: JSON.stringify(userData),
-    });
+  const handleSubmit = async (e) => {
+    e.preventDefault();
 
-    if (response.status === 201) {
-      // User registration was successful, navigate to a success screen
-      console.log("User registered successfully");
-    } else {
-      // Handle registration errors
-      console.error("User registration failed");
+    const userData = {
+      email,
+      password,
+      role,
+      selectedUniversity,
+      phoneNumber,
+    };
+
+    try {
+      const response = await fetch("http://127.0.0.1:5000/register", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify(userData),
+      });
+
+      if (response.status === 201) {
+        // User registration was successful, navigate to a success screen
+        console.log("User registered successfully");
+        setRegistrationError(""); // Clear any previous error message
+      } else if (response.status === 409) {
+        // User already exists with the provided email or phone number
+        setRegistrationError(
+          "An account already exists with this information. Please log in."
+        );
+      } else {
+        // Handle other registration errors
+        console.error("User registration failed");
+      }
+    } catch (error) {
+      console.error("Error while registering user:", error);
     }
-  } catch (error) {
-    console.error("Error while registering user:", error);
-  }
-};
+  };
 
   return (
     <section id="register">
@@ -62,7 +73,7 @@ const handleSubmit = async (e) => {
         <div className="geometric-background flex-grow flex items-center justify-center">
           <div className="bg-white p-8 rounded-lg shadow-md w-full sm:w-2/3 lg:w-1/2">
             <h1 className="text-3xl font-semibold text-center mb-4 text-primary">
-              Syllabuddy Registration
+              Start Your Syllabuddy Journey...
             </h1>
             <form onSubmit={handleSubmit} className="space-y-4">
               <div>
@@ -123,6 +134,22 @@ const handleSubmit = async (e) => {
               </div>
               <div>
                 <label
+                  htmlFor="phoneNumber"
+                  className="block text-sm font-semibold text-text"
+                >
+                  Enter your phone number:
+                </label>
+                <input
+                  type="text"
+                  placeholder="123456789"
+                  className="input input-bordered input-accent w-full max-w-xs"
+                  value={phoneNumber}
+                  onChange={handlePhoneNumberChange}
+                  id="phoneNumber"
+                />
+              </div>
+              <div>
+                <label
                   htmlFor="password"
                   className="block text-sm font-semibold text-text"
                 >
@@ -144,6 +171,9 @@ const handleSubmit = async (e) => {
                 >
                   Submit
                 </button>
+                {registrationError && (
+                  <p className="text-red-600">{registrationError}</p>
+                )}
               </div>
             </form>
           </div>
