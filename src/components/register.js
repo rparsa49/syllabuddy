@@ -49,10 +49,10 @@ const RegistrationPage = () => {
         body: JSON.stringify(userData),
       });
 
-      if (response.status === 201) {
+      if (response.status === 200) {
         // User registration was successful, navigate to a success screen
         console.log("User registered successfully");
-        setRegistrationError(""); // Clear any previous error message
+        setRegistrationError("User registered successfully!"); // Clear any previous error message
       } else if (response.status === 409) {
         // User already exists with the provided email or phone number
         setRegistrationError(
