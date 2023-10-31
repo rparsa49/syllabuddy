@@ -12,11 +12,13 @@ module.exports = {
       },
     },
   },
+  plugins: [require("daisyui")],
+  variants: {},
   daisyui: {
     themes: [
       {
         mytheme: {
-          text: "##000000",
+          text: "#000000",
           background: "#fdfaf7",
           primary: "#205497",
           secondary: "#c3c0f2",
@@ -25,6 +27,4 @@ module.exports = {
       },
     ],
   },
-  plugins: [require("daisyui")],
 };
-
