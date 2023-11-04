@@ -10,6 +10,7 @@ import LandingPage from "./components/landing";
 import RegistrationPage from "./components/register";
 import LoginPage from "./components/login";
 import StudentDashboard from "./components/studentdashboard";
+import AboutUs from "./components/aboutUs";
 
 function App() {
   const [user, setUser] = React.useState(null);
@@ -30,6 +31,7 @@ function App() {
             user ? <StudentDashboard user={user} /> : <Navigate to="/login" />
           }
         />
+        <Route path="/aboutUs" element={<AboutUs />} />
       </Routes>
     </Router>
   );
