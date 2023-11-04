@@ -2,15 +2,30 @@ import React, { useState } from "react";
 import universities from "./universities.json";
 
 const RegistrationPage = () => {
-  const [role, setRole] = useState("student");
+  const [userType, setUserType] = useState("");
   const [selectedUniversity, setSelectedUniversity] = useState("");
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [phoneNumber, setPhoneNumber] = useState("");
-  const [registrationError, setRegistrationError] = useState(""); // New state for error message
+  const [firstName, setFirstName] = useState("");
+  const [lastName, setLastName] = useState("");
+  const [userName, setUserName] = useState("");
+  const [registrationError, setRegistrationError] = useState("");
 
-  const handleRoleChange = (e) => {
-    setRole(e.target.value);
+  const handleFirstNameChange = (e) => {
+    setFirstName(e.target.value);
+  };
+
+  const handleLastNameChange = (e) => {
+    setLastName(e.target.value);
+  };
+
+  const handleUserNameChange = (e) => {
+    setUserName(e.target.value);
+  };
+
+  const handleUserTypeChange = (e) => {
+    setUserType(e.target.value);
   };
 
   const handleUniversityChange = (e) => {
@@ -35,10 +50,15 @@ const RegistrationPage = () => {
     const userData = {
       email,
       password,
-      role,
+      userType,
       selectedUniversity,
       phoneNumber,
+      firstName,
+      lastName,
+      userName,
     };
+
+    console.log("User Data:", userData);
 
     try {
       const response = await fetch("http://127.0.0.1:5000/register", {
@@ -52,15 +72,18 @@ const RegistrationPage = () => {
       if (response.status === 200) {
         // User registration was successful, navigate to a success screen
         console.log("User registered successfully");
-        setRegistrationError("User registered successfully!"); // Clear any previous error message
+        setRegistrationError("User registered successfully!");
+      } else if (response.status === 400) {
+        // Bad request (e.g., missing fields)
+        setRegistrationError("Unable to register user. Please try again.");
       } else if (response.status === 409) {
         // User already exists with the provided email or phone number
         setRegistrationError(
-          "An account already exists with this information. Please log in."
+          "An account already exists with this information."
         );
       } else {
         // Handle other registration errors
-        console.error("User registration failed");
+        console.error("Error while registering user");
       }
     } catch (error) {
       console.error("Error while registering user:", error);
@@ -75,18 +98,19 @@ const RegistrationPage = () => {
             <h1 className="text-3xl font-semibold text-center mb-4 text-primary">
               Start Your Syllabuddy Journey...
             </h1>
-            <form onSubmit={handleSubmit} className="space-y-4">
+            <form className="space-y-4">
               <div>
                 <label
-                  htmlFor="role"
+                  htmlFor="userType"
                   className="block text-sm font-semibold text-text"
                 >
                   Select your role below:
                 </label>
                 <select
                   className="select select-accent w-full max-w-xs"
-                  value={role}
-                  onChange={handleRoleChange}
+                  value={userType}
+                  onChange={handleUserTypeChange}
+                  name="userType"
                 >
                   <option disabled value="">
                     I am a...
@@ -97,12 +121,13 @@ const RegistrationPage = () => {
               </div>
               <div>
                 <label
-                  htmlFor="university"
+                  htmlFor="University"
                   className="block text-sm font-semibold text-text"
                 >
                   Select your university below:
                 </label>
                 <select
+                  name="University"
                   className="select w-full max-w-xs"
                   value={selectedUniversity}
                   onChange={handleUniversityChange}
@@ -119,6 +144,54 @@ const RegistrationPage = () => {
               </div>
               <div>
                 <label
+                  htmlFor="firstName"
+                  className="block text-sm font-semibold text-text"
+                >
+                  Enter your first name:
+                </label>
+                <input
+                  type="text"
+                  name="firstName"
+                  placeholder="Jane"
+                  className="input input-bordered input-accent w-full max-w-xs"
+                  value={firstName}
+                  onChange={handleFirstNameChange}
+                />
+              </div>
+              <div>
+                <label
+                  htmlFor="lastName"
+                  className="block text-sm font-semibold text-text"
+                >
+                  Enter your last name:
+                </label>
+                <input
+                  type="text"
+                  name="lastName"
+                  placeholder="Doe"
+                  className="input input-bordered input-accent w-full max-w-xs"
+                  value={lastName}
+                  onChange={handleLastNameChange}
+                />
+              </div>
+              <div>
+                <label
+                  htmlFor="userName"
+                  className="block text-sm font-semibold text-text"
+                >
+                  Enter your user name (This will be what you use to login!):
+                </label>
+                <input
+                  type="text"
+                  name="userName"
+                  placeholder="Your username!"
+                  className="input input-bordered input-accent w-full max-w-xs"
+                  value={userName}
+                  onChange={handleUserNameChange}
+                />
+              </div>
+              <div>
+                <label
                   htmlFor="email"
                   className="block text-sm font-semibold text-text"
                 >
@@ -126,6 +199,7 @@ const RegistrationPage = () => {
                 </label>
                 <input
                   type="text"
+                  name="email"
                   placeholder="example@example.edu"
                   className="input input-bordered input-accent w-full max-w-xs"
                   value={email}
@@ -141,6 +215,7 @@ const RegistrationPage = () => {
                 </label>
                 <input
                   type="text"
+                  name="phoneNumber"
                   placeholder="123456789"
                   className="input input-bordered input-accent w-full max-w-xs"
                   value={phoneNumber}
@@ -157,6 +232,7 @@ const RegistrationPage = () => {
                 </label>
                 <input
                   type="password"
+                  name="password"
                   placeholder="Don't share your password!"
                   className="input input-bordered input-accent w-full max-w-xs"
                   value={password}
