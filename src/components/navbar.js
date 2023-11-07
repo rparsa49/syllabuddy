@@ -1,7 +1,7 @@
 import React from "react";
-import { Link } from "react-router-dom"; 
+import { Link } from "react-router-dom";
 
-export default function NavBar() {
+export default function NavBar({ isAuthenticated }) {
   return (
     <header className="bg-primary md:sticky top-0 z-10">
       <div className="container mx-auto flex flex-wrap p-5 flex-col md:flex-row items-center">
@@ -20,6 +20,11 @@ export default function NavBar() {
           <Link to="/login" className="mr-5 hover:text-accent">
             Log In
           </Link>
+          {isAuthenticated && (
+            <Link to="/dashboard" className="mr-5 hover:text-accent">
+              Dashboard
+            </Link>
+          )}
         </nav>
       </div>
     </header>

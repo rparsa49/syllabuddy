@@ -11,13 +11,18 @@ import RegistrationPage from "./components/register";
 import LoginPage from "./components/login";
 import StudentDashboard from "./components/studentdashboard";
 import AboutUs from "./components/aboutUs";
+import Search from "./components/search";
+import Landing from "./components/landing";
 
 function App() {
   const [user, setUser] = React.useState(null);
 
+  // Calculate the isAuthenticated status
+  const isAuthenticated = !!user;
+
   return (
     <Router>
-      <NavBar />
+      <NavBar isAuthenticated={isAuthenticated} />
       <Routes>
         <Route path="/" element={<LandingPage />} />
         <Route path="/register" element={<RegistrationPage />} />
@@ -28,10 +33,15 @@ function App() {
         <Route
           path="/dashboard"
           element={
-            user ? <StudentDashboard user={user} /> : <Navigate to="/login" />
+            isAuthenticated ? (
+              <StudentDashboard user={user} />
+            ) : (
+              <Navigate to="/login" />
+            )
           }
         />
         <Route path="/aboutUs" element={<AboutUs />} />
+        <Route path="/search" element={<Search />} />
       </Routes>
     </Router>
   );
