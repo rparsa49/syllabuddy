@@ -3,7 +3,7 @@ import React, { useState } from "react";
 
 const Test = () => {
   const [responseData, setResponseData] = useState(null);
-
+  const [userID, set_userID] = useState("")
 
 
     const handleView = async (e) => {
@@ -14,8 +14,11 @@ const Test = () => {
     
         try {
           const response = await fetch("http://127.0.0.1:5000/Viewfavouritecourses", {
-            method: "GET",
-            
+            method: "POST",
+            headers: {
+              "Content-Type": "application/json",
+            },
+            body: JSON.stringify(userID),
             
             
            
@@ -46,7 +49,15 @@ const Test = () => {
                   </button>
                   
                 </div>
-                
+                <input
+                    value={userID}
+                    onChange={(e) => set_userID(e.target.value)}
+                    className="input input-bordered input-accent w-full max-w-xs "
+                    type="userID"
+                    placeholder="A userID"
+                    id="userID"
+                    name="userID"
+                  />        
       
         
           
