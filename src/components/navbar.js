@@ -20,6 +20,9 @@ export default function NavBar() {
           <Link to="/login" className="mr-5 hover:text-accent">
             Log In
           </Link>
+          <Link to="/search" className="mr-5 hover:text-accent">
+           Search Courses
+          </Link>
         </nav>
       </div>
     </header>
