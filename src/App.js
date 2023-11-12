@@ -10,7 +10,7 @@ import LandingPage from "./components/landing";
 import RegistrationPage from "./components/register";
 import LoginPage from "./components/login";
 import StudentDashboard from "./components/studentdashboard";
-import Search from "./components/Search";
+import SearchCourse from "./components/Search";
 
 function App() {
   const [user, setUser] = React.useState(null);
@@ -31,6 +31,8 @@ function App() {
             user ? <StudentDashboard user={user} /> : <Navigate to="/login" />
           }
         />
+        <Route
+          path="/Search" element= {<SearchCourse/>} />
       </Routes>
     </Router>
   );
