@@ -5,7 +5,6 @@ import { useNavigate } from "react-router-dom";
 const Login = ({ onLogin }) => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
-  const [loginError, setloginError] = useState("");
   const navigate = useNavigate();
 
 
@@ -104,11 +103,6 @@ const Login = ({ onLogin }) => {
                   </button>
                 </div>
               </form>
-              {/* <div className="mb-4 flex justify-center">
-                <button className=" block btn btn-primary">
-                  Don't have an account? Register Here
-                </button>
-              </div> */}
             </div>
           </div>
         </div>
