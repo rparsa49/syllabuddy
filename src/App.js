@@ -11,7 +11,7 @@ import RegistrationPage from "./components/register";
 import LoginPage from "./components/login";
 import StudentDashboard from "./components/studentdashboard";
 import AboutUs from "./components/aboutUs";
-import Search from "./components/search";
+import Search from "./components/searchCourse";
 
 function App() {
   const [user, setUser] = React.useState(null);
@@ -40,7 +40,7 @@ function App() {
           }
         />
         <Route path="/aboutUs" element={<AboutUs />} />
-        <Route path="/search" element={<Search />} />
+        <Route path="/searchCourse" element={<Search />} />
       </Routes>
     </Router>
   );

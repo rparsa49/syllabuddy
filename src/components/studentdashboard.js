@@ -1,9 +1,12 @@
-import React from "react";
+import React, {useState} from "react";
 import { useNavigate } from "react-router-dom";
 import { FaSearch } from "react-icons/fa";
 
 const StudentDashboard = ({ user }) => {
   const navigate = useNavigate();
+  const [courseName, setCourseName] = useState('');
+  const { userID, universityID } = user;
+  
 
   const handleLogout = async () => {
     try {
@@ -20,6 +23,17 @@ const StudentDashboard = ({ user }) => {
       }
     } catch (error) {
       console.log("Error while logging out:", error);
+    }
+  };
+
+  const handleSearch = () => {
+    // Check if universityID exists in the user object
+    if (user.name) {
+      // Navigate to the searchCourse route and pass the courseName in the state
+      navigate("/searchCourse", { state: { userID, universityID, courseName } });
+    } else {
+      // Handle the case where universityID is missing
+      console.error("University ID is missing in the user object.");
     }
   };
 
@@ -58,13 +72,32 @@ const StudentDashboard = ({ user }) => {
           <div className="flex">
             <input
               type="text"
-              placeholder="Search..."
+              placeholder="Human Condition 1"
+              onChange={(e) => setCourseName(e.target.value)}
+              className="border border-gray-300 p-2 rounded-l-md w-full"
+            />
+            <button onClick={handleSearch} className="btn btn-secondary rounded-r-md">
+              <FaSearch />
+            </button>
+          </div>
+          {/* <div className="mb-4">
+          <h2 className="text-xl font-semibold mb-2">Search for Professor</h2>
+          <div className="flex">
+            <input
+              type="text"
+              placeholder="Robin"
+              className="border border-gray-300 p-2 rounded-l-md w-full"
+            />
+            <input
+              type="text"
+              placeholder="Shoemaker"
               className="border border-gray-300 p-2 rounded-l-md w-full"
             />
             <button className="btn btn-secondary rounded-r-md">
               <FaSearch />
             </button>
           </div>
+        </div> */}
         </div>
       </div>
       <div className="mt-auto p-4">
