@@ -1,12 +1,11 @@
-import React, {useState} from "react";
+import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { FaSearch } from "react-icons/fa";
 
 const StudentDashboard = ({ user }) => {
   const navigate = useNavigate();
-  const [courseName, setCourseName] = useState('');
-  const { userID, universityID } = user;
-  
+  const [courseName, setCourseName] = useState("");
+  const [responseData, setResponseData] = useState([]);
 
   const handleLogout = async () => {
     try {
@@ -26,14 +25,25 @@ const StudentDashboard = ({ user }) => {
     }
   };
 
-  const handleSearch = () => {
-    // Check if universityID exists in the user object
-    if (user.name) {
-      // Navigate to the searchCourse route and pass the courseName in the state
-      navigate("/searchCourse", { state: { userID, universityID, courseName } });
-    } else {
-      // Handle the case where universityID is missing
-      console.error("University ID is missing in the user object.");
+  const handleSearch = async (e) => {
+    e.preventDefault();
+
+    try {
+      const response = await fetch("http://127.0.0.1:5000/searchCourse", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({ courseName: courseName }),
+      });
+
+      if (response.status === 200) {
+        setResponseData(await response.json());
+         //console.log(responseData.length);
+      } else console.log("response data: ", responseData);
+       
+    } catch (error) {
+      console.log("Error while loading searching courses:", error);
     }
   };
 
@@ -76,30 +86,44 @@ const StudentDashboard = ({ user }) => {
               onChange={(e) => setCourseName(e.target.value)}
               className="border border-gray-300 p-2 rounded-l-md w-full"
             />
-            <button onClick={handleSearch} className="btn btn-secondary rounded-r-md">
+            <button
+              onClick={handleSearch}
+              className="btn btn-secondary rounded-r-md"
+            >
               <FaSearch />
             </button>
           </div>
-          {/* <div className="mb-4">
-          <h2 className="text-xl font-semibold mb-2">Search for Professor</h2>
-          <div className="flex">
-            <input
-              type="text"
-              placeholder="Robin"
-              className="border border-gray-300 p-2 rounded-l-md w-full"
-            />
-            <input
-              type="text"
-              placeholder="Shoemaker"
-              className="border border-gray-300 p-2 rounded-l-md w-full"
-            />
-            <button className="btn btn-secondary rounded-r-md">
-              <FaSearch />
-            </button>
-          </div>
-        </div> */}
         </div>
       </div>
+      <div className="mb-4">
+        <h2 className="text-xl font-semibold mb-2">Course Searched </h2>
+        <div>
+          <table>
+            <thead>
+              <tr>
+                <th className="border px-4 py-2">Course Code</th>
+                <th className="border px-4 py-2">Course Name</th>
+                <th className="border px-4 py-2">Instructor Name</th>
+                <th className="border px-4 py-2">Year Term</th>
+                <th className="border px-4 py-2">Favorite Course</th>
+              </tr>
+            </thead>
+            <tbody>
+              {responseData.map((dataItem, index) => (
+                <tr key={index}>
+                  <td className="border px-4 py-2">{dataItem.courseCode}</td>
+                  <td className="border px-4 py-2">{dataItem.courseName}</td>
+                  <td className="border px-4 py-2">{`${dataItem.firstName} ${dataItem.lastName}`}</td>
+                  <td className="border px-4 py-2">{dataItem.yearTerm} </td>
+                  <td className="border px-4 py-2"> <button className="btn btn-primary">Favorite Course</button></td>
+                </tr>
+              ))}
+            </tbody>
+          </table>
+        </div>
+       
+      </div>
+
       <div className="mt-auto p-4">
         <button className="block btn btn-secondary" onClick={handleLogout}>
           Log Out
