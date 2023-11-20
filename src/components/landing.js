@@ -1,6 +1,6 @@
 import React from "react";
 import { Link } from "react-router-dom";
-// hi
+
 const Landing = () => {
   return (
     <div className="min-h-screen flex flex-col text-white">
@@ -31,12 +31,9 @@ const Landing = () => {
       <footer className="container mx-auto p-6 flex flex-col md:flex-row items-center justify-between text-black">
         <p> Built by Team WeAreBadAtNames</p>
         <div className="flex -mx-6">
-          <a href="#" className="mx-3 hover:opacity-80 duration-150">
-            About us
-          </a>
-          <a href="#" className="mx-3 hover:opacity-80 duration-150">
-            Contact
-          </a>
+          <Link to="/aboutUs" className="mx-3 hover:opacity-80 duration-150">
+            About us | Contact
+          </Link>
         </div>
       </footer>
     </div>
