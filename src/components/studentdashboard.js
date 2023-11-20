@@ -6,7 +6,7 @@ const StudentDashboard = ({ user }) => {
   const navigate = useNavigate();
   const [courseName, setCourseName] = useState("");
   const [responseData, setResponseData] = useState([]);
-  // const [professor, setProfessor] = useState("");
+  const [professor, setProfessor] = useState("");
   var user_id = user.user_name;
 
   const handleLogout = async () => {
@@ -41,7 +41,6 @@ const StudentDashboard = ({ user }) => {
 
       if (response.status === 200) {
         setResponseData(await response.json());
-         //console.log(responseData.length);
       } else console.log("response data: ", responseData);
        
     } catch (error) {
@@ -63,7 +62,6 @@ const StudentDashboard = ({ user }) => {
 
       if (response.status === 200) {
         setResponseData(await response.json());
-         //console.log(responseData.length);
       } else console.log("response data: ", responseData);
        
     } catch (error) {
@@ -77,19 +75,6 @@ const StudentDashboard = ({ user }) => {
         <h1 className="text-2xl text-center">Welcome, {user_id}!</h1>
       </header>
       <div className="p-4">
-        <div className="mb-4">
-          <h2 className="text-xl font-semibold mb-2">
-            Recently Viewed Courses
-          </h2>
-          <div
-            className="bg-white border border-gray-300 rounded-lg p-4 cursor-pointer"
-            onClick={() => navigate("/recent-courses")}
-          >
-            {/* Display one or two recently viewed courses here */}
-            <p>Course 1</p>
-            <p>Course 2</p>
-          </div>
-        </div>
         <div className="mb-4">
           <h2 className="text-xl font-semibold mb-2">Favorite Courses</h2>
           <div
@@ -112,7 +97,7 @@ const StudentDashboard = ({ user }) => {
             />
             <button
               onClick={handleSearchCourse}
-              className="btn btn-secondary rounded-r-md ml-2"
+              className="btn btn-secondary rounded-md ml-2"
             >
               <FaSearch />
             </button>
@@ -150,53 +135,57 @@ const StudentDashboard = ({ user }) => {
             </table>
           </div>
         </div>
-      </div>
-
-      {/* <div className="mb-4">
-          <h2 className="text-xl font-semibold mb-2"> Search for Professors </h2>
+        <div className="mb-4">
+          <h2 className="text-xl font-semibold mb-2">Search for Professors</h2>
           <div className="flex">
             <input
               type="text"
-              placeholder="Matthew Massaia"
+              placeholder="Enter a professor's name..."
               onChange={(e) => setProfessor(e.target.value)}
-              className="border border-gray-300 p-2 rounded-l-md w-full"
+              className="border border-gray-300 p-2 rounded-md w-full"
             />
             <button
               onClick={handleSearchProfessor}
-              className="btn btn-secondary rounded-r-md"
+              className="btn btn-secondary rounded-md ml-2"
             >
               <FaSearch />
             </button>
           </div>
-        </div> */}
-
-      {/* <div className="mb-4">
-        <h2 className="text-xl font-semibold mb-2">Professor Searched </h2>
-        <div>
-          <table>
-            <thead>
-              <tr>
-                <th className="border px-4 py-2">Course Code</th>
-                <th className="border px-4 py-2">Course Name</th>
-                <th className="border px-4 py-2">Instructor Name</th>
-                <th className="border px-4 py-2">Year Term</th>
-                <th className="border px-4 py-2">Favorite Course</th>
-              </tr>
-            </thead>
-            <tbody>
-              {responseData.map((dataItem, index) => (
-                <tr key={index}>
-                  <td className="border px-4 py-2">{dataItem.courseCode}</td>
-                  <td className="border px-4 py-2">{dataItem.courseName}</td>
-                  <td className="border px-4 py-2">{`${dataItem.firstName} ${dataItem.lastName}`}</td>
-                  <td className="border px-4 py-2">{dataItem.yearTerm} </td>
-                  <td className="border px-4 py-2"> <button className="btn btn-primary">Favorite Course</button></td>
-                </tr>
-              ))}
-            </tbody>
-          </table>
         </div>
-      </div> */}
+
+        <div className="mb-4">
+          <h2 className="text-xl font-semibold mb-2">Seach Results </h2>
+          <div>
+            <table>
+              <thead>
+                <tr>
+                  <th className="border px-4 py-2">Course Code</th>
+                  <th className="border px-4 py-2">Course Name</th>
+                  <th className="border px-4 py-2">Instructor Name</th>
+                  <th className="border px-4 py-2">Year Term</th>
+                  <th className="border px-4 py-2">Favorite Course</th>
+                </tr>
+              </thead>
+              <tbody>
+                {responseData.map((dataItem, index) => (
+                  <tr key={index}>
+                    <td className="border px-4 py-2">{dataItem.courseCode}</td>
+                    <td className="border px-4 py-2">{dataItem.courseName}</td>
+                    <td className="border px-4 py-2">{`${dataItem.firstName} ${dataItem.lastName}`}</td>
+                    <td className="border px-4 py-2">{dataItem.yearTerm} </td>
+                    <td className="border px-4 py-2">
+                      {" "}
+                      <button className="btn btn-primary">
+                        Favorite Course
+                      </button>
+                    </td>
+                  </tr>
+                ))}
+              </tbody>
+            </table>
+          </div>
+        </div>
+      </div>
 
       <div className="mt-auto p-4">
         <button className="block btn btn-secondary" onClick={handleLogout}>
