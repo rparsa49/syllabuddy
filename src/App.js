@@ -12,7 +12,7 @@ import RegistrationPage from "./components/register";
 import LoginPage from "./components/login";
 import StudentDashboard from "./components/studentdashboard";
 import CourseDisplayPage from "./components/coursedisplay";
-import AddCoursePage from "./components/addcourse";
+// import AddCoursePage from "./components/addcourse";
 import Test from "./components/test";
 import AboutUs from "./components/aboutUs";
 
@@ -31,7 +31,7 @@ function App() {
         <Route path="/login" element={<LoginPage onLogin={(userData) => setUser(userData)} />} />
         <Route path="/dashboard" element={user ? <StudentDashboard user={user} /> : <Navigate to="/login" /> } />
         <Route path="/coursedisplay" element={<CourseDisplayPage />} />
-        <Route path="/addcourse" element={<AddCoursePage />} />
+        {/* <Route path="/addcourse" element={<AddCoursePage />} /> */}
         <Route
           path="/login"
           element={<LoginPage onLogin={(userData) => setUser(userData)} />}
