@@ -12,7 +12,6 @@ import LoginPage from "./components/login";
 import StudentDashboard from "./components/studentdashboard";
 import Test from "./components/test";
 import AboutUs from "./components/aboutUs";
-import Search from "./components/search";
 
 function App() {
   const [user, setUser] = React.useState(null);
