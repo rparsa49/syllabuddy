@@ -6,7 +6,8 @@ const StudentDashboard = ({ user }) => {
   const navigate = useNavigate();
   const [courseName, setCourseName] = useState("");
   const [responseData, setResponseData] = useState([]);
-  //const [professor, setProfessor] = useState("");
+  // const [professor, setProfessor] = useState("");
+  var user_id = user.user_name;
 
   const handleLogout = async () => {
     try {
@@ -48,31 +49,32 @@ const StudentDashboard = ({ user }) => {
     }
   };
 
-  // const handleSearchProfessor = async (e) => {
-  //   e.preventDefault();
+  const handleSearchProfessor = async (e) => {
+    e.preventDefault();
 
-  //   try {
-  //     const response = await fetch("http://127.0.0.1:5000/searchProfessor", {
-  //       method: "POST",
-  //       headers: {
-  //         "Content-Type": "application/json",
-  //       },
-  //       body: JSON.stringify({ courseName: courseName }),
-  //     });
+    try {
+      const response = await fetch("http://127.0.0.1:5000/searchProfessor", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({ courseName: courseName }),
+      });
 
-  //     if (response.status === 200) {
-  //       setResponseData(await response.json());
-  //        //console.log(responseData.length);
-  //     } else console.log("response data: ", responseData);
+      if (response.status === 200) {
+        setResponseData(await response.json());
+         //console.log(responseData.length);
+      } else console.log("response data: ", responseData);
        
-  //   } catch (error) {
-  //     console.log("Error while loading searching courses:", error);
-  //   }
-  // };
+    } catch (error) {
+      console.log("Error while loading searching courses:", error);
+    }
+  };
+  
   return (
     <div className="min-h-screen flex flex-col bg-background">
       <header className="bg-primary text-white p-4">
-        <h1 className="text-2xl text-center">Welcome, {user.name}!</h1>
+        <h1 className="text-2xl text-center">Welcome, {user_id}!</h1>
       </header>
       <div className="p-4">
         <div className="mb-4">
@@ -104,16 +106,48 @@ const StudentDashboard = ({ user }) => {
           <div className="flex">
             <input
               type="text"
-              placeholder="Human Condition 1"
+              placeholder="Enter a course name or code..."
               onChange={(e) => setCourseName(e.target.value)}
-              className="border border-gray-300 p-2 rounded-l-md w-full"
+              className="border border-gray-300 p-2 rounded-md w-full"
             />
             <button
               onClick={handleSearchCourse}
-              className="btn btn-secondary rounded-r-md"
+              className="btn btn-secondary rounded-r-md ml-2"
             >
               <FaSearch />
             </button>
+          </div>
+        </div>
+        <div className="mb-4">
+          <h2 className="text-xl font-semibold mb-2">Search Results</h2>
+          <div>
+            <table>
+              <thead>
+                <tr>
+                  <th className="border px-4 py-2">Course Code</th>
+                  <th className="border px-4 py-2">Course Name</th>
+                  <th className="border px-4 py-2">Instructor Name</th>
+                  <th className="border px-4 py-2">Year Term</th>
+                  <th className="border px-4 py-2">Favorite Course</th>
+                </tr>
+              </thead>
+              <tbody>
+                {responseData.map((dataItem, index) => (
+                  <tr key={index}>
+                    <td className="border px-4 py-2">{dataItem.courseCode}</td>
+                    <td className="border px-4 py-2">{dataItem.courseName}</td>
+                    <td className="border px-4 py-2">{`${dataItem.firstName} ${dataItem.lastName}`}</td>
+                    <td className="border px-4 py-2">{dataItem.yearTerm} </td>
+                    <td className="border px-4 py-2">
+                      {" "}
+                      <button className="btn btn-primary">
+                        Favorite Course
+                      </button>
+                    </td>
+                  </tr>
+                ))}
+              </tbody>
+            </table>
           </div>
         </div>
       </div>
@@ -135,34 +169,6 @@ const StudentDashboard = ({ user }) => {
             </button>
           </div>
         </div> */}
-
-      <div className="mb-4">
-        <h2 className="text-xl font-semibold mb-2">Course Searched </h2>
-        <div>
-          <table>
-            <thead>
-              <tr>
-                <th className="border px-4 py-2">Course Code</th>
-                <th className="border px-4 py-2">Course Name</th>
-                <th className="border px-4 py-2">Instructor Name</th>
-                <th className="border px-4 py-2">Year Term</th>
-                <th className="border px-4 py-2">Favorite Course</th>
-              </tr>
-            </thead>
-            <tbody>
-              {responseData.map((dataItem, index) => (
-                <tr key={index}>
-                  <td className="border px-4 py-2">{dataItem.courseCode}</td>
-                  <td className="border px-4 py-2">{dataItem.courseName}</td>
-                  <td className="border px-4 py-2">{`${dataItem.firstName} ${dataItem.lastName}`}</td>
-                  <td className="border px-4 py-2">{dataItem.yearTerm} </td>
-                  <td className="border px-4 py-2"> <button className="btn btn-primary">Favorite Course</button></td>
-                </tr>
-              ))}
-            </tbody>
-          </table>
-        </div>
-      </div>
 
       {/* <div className="mb-4">
         <h2 className="text-xl font-semibold mb-2">Professor Searched </h2>

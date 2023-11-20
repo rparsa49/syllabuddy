@@ -12,6 +12,7 @@ import LoginPage from "./components/login";
 import StudentDashboard from "./components/studentdashboard";
 import Test from "./components/test";
 import AboutUs from "./components/aboutUs";
+import FavoriteCourses from "./components/favoriteCourses";
 
 function App() {
   const [user, setUser] = React.useState(null);
@@ -42,6 +43,16 @@ function App() {
         />
         <Route path="/aboutUs" element={<AboutUs />} />
         {/* <Route path="/searchCourse" element={<Search />} /> */}
+        <Route
+          path="/favorite-courses"
+          element={
+            isAuthenticated ? (
+              <FavoriteCourses user={user} />
+            ) : (
+              <Navigate to="/login" />
+            )
+          }
+        />
       </Routes>
     </Router>
   );
