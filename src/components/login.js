@@ -1,19 +1,22 @@
 import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
 
+
 const Login = ({ onLogin }) => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
-  const [loginError, setloginError] = useState("");
   const navigate = useNavigate();
+
 
   const handleSubmit = async (e) => {
     e.preventDefault();
+
 
     const userData = {
       password,
       email,
     };
+
 
     try {
       const response = await fetch("http://127.0.0.1:5000/login", {
@@ -24,9 +27,11 @@ const Login = ({ onLogin }) => {
         body: JSON.stringify(userData),
       });
 
+
       if (response.status === 200) {
         const responseData = await response.json();
         console.log("User successfully logged in:", responseData);
+
 
         // Update the user state with the user data from the response.
         onLogin(responseData);
@@ -36,6 +41,7 @@ const Login = ({ onLogin }) => {
       console.log("Error while logging in:", error);
     }
   };
+
 
   return (
     <div>
@@ -67,6 +73,7 @@ const Login = ({ onLogin }) => {
                   />
                 </div>
 
+
                 <div className="mb-4">
                   <label
                     className="block text-sm font-semibold text-text"
@@ -85,6 +92,7 @@ const Login = ({ onLogin }) => {
                   />
                 </div>
 
+
                 <div className="mb-4 flex justify-center ">
                   <button
                     className=" block btn btn-secondary "
@@ -95,11 +103,6 @@ const Login = ({ onLogin }) => {
                   </button>
                 </div>
               </form>
-              {/* <div className="mb-4 flex justify-center">
-                <button className=" block btn btn-primary">
-                  Don't have an account? Register Here
-                </button>
-              </div> */}
             </div>
           </div>
         </div>
@@ -107,5 +110,6 @@ const Login = ({ onLogin }) => {
     </div>
   );
 };
+
 
 export default Login;
