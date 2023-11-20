@@ -4,7 +4,7 @@ import universities from "./universities.json";
 
 const RegistrationPage = () => {
   const [userType, setUserType] = useState("");
-  const [selectedUniversity, setSelectedUniversity] = useState("");
+  const [University, setSelectedUniversity] = useState("");
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [phoneNumber, setPhoneNumber] = useState("");
@@ -62,7 +62,7 @@ const RegistrationPage = () => {
       email,
       password,
       userType,
-      selectedUniversity,
+      University,
       phoneNumber,
       firstName,
       lastName,
@@ -144,7 +144,7 @@ const RegistrationPage = () => {
                 <select
                   name="University"
                   className="select w-full max-w-xs"
-                  value={selectedUniversity}
+                  value={University}
                   onChange={handleUniversityChange}
                 >
                   <option disabled value="">

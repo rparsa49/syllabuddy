@@ -10,8 +10,9 @@ import LandingPage from "./components/landing";
 import RegistrationPage from "./components/register";
 import LoginPage from "./components/login";
 import StudentDashboard from "./components/studentdashboard";
+import Test from "./components/test";
 import AboutUs from "./components/aboutUs";
-// import Search from "./components/searchCourse";
+import Search from "./components/search";
 
 function App() {
   const [user, setUser] = React.useState(null);
@@ -29,6 +30,7 @@ function App() {
           path="/login"
           element={<LoginPage onLogin={(userData) => setUser(userData)} />}
         />
+        <Route path="/test" element={<Test />} />
         <Route
           path="/dashboard"
           element={
