@@ -27,7 +27,6 @@ const Landing = () => {
           </Link>
         </div>
       </main>
-
       <footer className="container mx-auto p-6 flex flex-col md:flex-row items-center justify-between text-black">
         <p> Built by Team WeAreBadAtNames</p>
         <div className="flex -mx-6">
