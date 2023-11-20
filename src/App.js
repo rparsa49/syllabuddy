@@ -42,7 +42,7 @@ function App() {
           }
         />
         <Route path="/aboutUs" element={<AboutUs />} />
-        <Route path="/search" element={<Search />} />
+        {/* <Route path="/searchCourse" element={<Search />} /> */}
       </Routes>
     </Router>
   );

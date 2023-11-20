@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import universities from "./universities.json";
 
+
 const RegistrationPage = () => {
   const [userType, setUserType] = useState("");
   const [University, setSelectedUniversity] = useState("");
@@ -12,40 +13,50 @@ const RegistrationPage = () => {
   const [userName, setUserName] = useState("");
   const [registrationError, setRegistrationError] = useState("");
 
+
   const handleFirstNameChange = (e) => {
     setFirstName(e.target.value);
   };
+
 
   const handleLastNameChange = (e) => {
     setLastName(e.target.value);
   };
 
+
   const handleUserNameChange = (e) => {
     setUserName(e.target.value);
   };
+
 
   const handleUserTypeChange = (e) => {
     setUserType(e.target.value);
   };
 
+
   const handleUniversityChange = (e) => {
     setSelectedUniversity(e.target.value);
   };
+
 
   const handleEmailChange = (e) => {
     setEmail(e.target.value);
   };
 
+
   const handlePasswordChange = (e) => {
     setPassword(e.target.value);
   };
+
 
   const handlePhoneNumberChange = (e) => {
     setPhoneNumber(e.target.value);
   };
 
+
   const handleSubmit = async (e) => {
     e.preventDefault();
+
 
     const userData = {
       email,
@@ -58,7 +69,9 @@ const RegistrationPage = () => {
       userName,
     };
 
+
     console.log("User Data:", userData);
+
 
     try {
       const response = await fetch("http://127.0.0.1:5000/register", {
@@ -68,6 +81,7 @@ const RegistrationPage = () => {
         },
         body: JSON.stringify(userData),
       });
+
 
       if (response.status === 200) {
         // User registration was successful, navigate to a success screen
@@ -89,6 +103,7 @@ const RegistrationPage = () => {
       console.error("Error while registering user:", error);
     }
   };
+
 
   return (
     <section id="register">
@@ -258,5 +273,6 @@ const RegistrationPage = () => {
     </section>
   );
 };
+
 
 export default RegistrationPage;
