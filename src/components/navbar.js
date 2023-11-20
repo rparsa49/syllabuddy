@@ -3,11 +3,11 @@ import { Link } from "react-router-dom";
 
 export default function NavBar() {
   return (
-    <header className="bg-primary md:sticky top-0 z-10">
+    <header className="bg-newsecond md:sticky top-0 z-10">
       <div className="container mx-auto flex flex-wrap p-5 flex-col md:flex-row items-center">
         <Link to="/title" className="title-font text-text mb-4 md:mb-0">
           <span className="ml-3 text-2xl font-bold text-secondary">
-            Syllabuddy
+            <img src={require("./logo.png")} style={{width:'200px', height: '55px', marginTop: '-30px'}}></img>
           </span>
         </Link>
         <nav className="md:mr-auto md:ml-4 md:py-1 md:pl-4 md:border-l text-background">
