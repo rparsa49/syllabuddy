@@ -6,6 +6,7 @@ const StudentDashboard = ({ user }) => {
   const navigate = useNavigate();
   const [courseName, setCourseName] = useState("");
   const [responseData, setResponseData] = useState([]);
+  const [professor, setProfessor] = useState("");
 
   const handleLogout = async () => {
     try {
@@ -25,7 +26,7 @@ const StudentDashboard = ({ user }) => {
     }
   };
 
-  const handleSearch = async (e) => {
+  const handleSearchCourse = async (e) => {
     e.preventDefault();
 
     try {
@@ -47,6 +48,27 @@ const StudentDashboard = ({ user }) => {
     }
   };
 
+  // const handleSearchProfessor = async (e) => {
+  //   e.preventDefault();
+
+  //   try {
+  //     const response = await fetch("http://127.0.0.1:5000/searchProfessor", {
+  //       method: "POST",
+  //       headers: {
+  //         "Content-Type": "application/json",
+  //       },
+  //       body: JSON.stringify({ courseName: courseName }),
+  //     });
+
+  //     if (response.status === 200) {
+  //       setResponseData(await response.json());
+  //        //console.log(responseData.length);
+  //     } else console.log("response data: ", responseData);
+       
+  //   } catch (error) {
+  //     console.log("Error while loading searching courses:", error);
+  //   }
+  // };
   return (
     <div className="min-h-screen flex flex-col bg-background">
       <header className="bg-primary text-white p-4">
@@ -87,7 +109,7 @@ const StudentDashboard = ({ user }) => {
               className="border border-gray-300 p-2 rounded-l-md w-full"
             />
             <button
-              onClick={handleSearch}
+              onClick={handleSearchCourse}
               className="btn btn-secondary rounded-r-md"
             >
               <FaSearch />
@@ -95,6 +117,25 @@ const StudentDashboard = ({ user }) => {
           </div>
         </div>
       </div>
+
+      {/* <div className="mb-4">
+          <h2 className="text-xl font-semibold mb-2"> Search for Professors </h2>
+          <div className="flex">
+            <input
+              type="text"
+              placeholder="Matthew Massaia"
+              onChange={(e) => setProfessor(e.target.value)}
+              className="border border-gray-300 p-2 rounded-l-md w-full"
+            />
+            <button
+              onClick={handleSearchProfessor}
+              className="btn btn-secondary rounded-r-md"
+            >
+              <FaSearch />
+            </button>
+          </div>
+        </div> */}
+
       <div className="mb-4">
         <h2 className="text-xl font-semibold mb-2">Course Searched </h2>
         <div>
@@ -121,8 +162,35 @@ const StudentDashboard = ({ user }) => {
             </tbody>
           </table>
         </div>
-       
       </div>
+
+      {/* <div className="mb-4">
+        <h2 className="text-xl font-semibold mb-2">Professor Searched </h2>
+        <div>
+          <table>
+            <thead>
+              <tr>
+                <th className="border px-4 py-2">Course Code</th>
+                <th className="border px-4 py-2">Course Name</th>
+                <th className="border px-4 py-2">Instructor Name</th>
+                <th className="border px-4 py-2">Year Term</th>
+                <th className="border px-4 py-2">Favorite Course</th>
+              </tr>
+            </thead>
+            <tbody>
+              {responseData.map((dataItem, index) => (
+                <tr key={index}>
+                  <td className="border px-4 py-2">{dataItem.courseCode}</td>
+                  <td className="border px-4 py-2">{dataItem.courseName}</td>
+                  <td className="border px-4 py-2">{`${dataItem.firstName} ${dataItem.lastName}`}</td>
+                  <td className="border px-4 py-2">{dataItem.yearTerm} </td>
+                  <td className="border px-4 py-2"> <button className="btn btn-primary">Favorite Course</button></td>
+                </tr>
+              ))}
+            </tbody>
+          </table>
+        </div>
+      </div> */}
 
       <div className="mt-auto p-4">
         <button className="block btn btn-secondary" onClick={handleLogout}>

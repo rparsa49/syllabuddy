@@ -22,8 +22,8 @@ INSERT Ignore INTO Users(
         username,
         password,
         userType,
-        lastName,
         firstName,
+        lastName,
         email,
         universityID,
         phoneNumber
