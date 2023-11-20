@@ -6,7 +6,7 @@ const StudentDashboard = ({ user }) => {
   const navigate = useNavigate();
   const [courseName, setCourseName] = useState("");
   const [responseData, setResponseData] = useState([]);
-  const [professor, setProfessor] = useState("");
+  //const [professor, setProfessor] = useState("");
 
   const handleLogout = async () => {
     try {
