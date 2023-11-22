@@ -5,7 +5,6 @@ const FavoriteCourses = ({ user }) => {
   const [favoriteCourses, setFavoriteCourses] = useState([
     { code: "CS101", name: "Introduction to Computer Science" },
     { code: "MATH202", name: "Advanced Mathematics" },
-    // Add more mock data as needed
   ]);
 
   useEffect(() => {
@@ -58,7 +57,7 @@ const FavoriteCourses = ({ user }) => {
 
   return (
     <div className="bg-background text-gray-900">
-      <header className="bg-primary text-white p-4">
+      <header className="bg-newsecond text-white p-4">
         <h1 className="text-2xl text-center">Your favorite courses!</h1>
       </header>
       <div className="p-4">

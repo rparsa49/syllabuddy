@@ -7,6 +7,7 @@ const StudentDashboard = ({ user }) => {
   const [courseName, setCourseName] = useState("");
   const [responseData, setResponseData] = useState([]);
   const [professor, setProfessor] = useState("");
+  const [favoriteCourses, setFavoriteCourses] = useState([]);
   var user_id = user.user_name;
 
   const handleLogout = async () => {
@@ -27,6 +28,35 @@ const StudentDashboard = ({ user }) => {
     }
   };
 
+  // Function to handle adding/removing favorite courses
+  const handleFavoriteCourse = async (courseID) => {
+    try {
+      const response = await fetch("http://127.0.0.1:5000/handlefavorite", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({
+          userID: user.user_id,
+          courseID: courseID,
+        }),
+      });
+
+      if (response.status === 200) {
+        // Update the list of favorite courses
+        setFavoriteCourses((prevFavorites) =>
+          prevFavorites.includes(courseID)
+            ? prevFavorites.filter((id) => id !== courseID)
+            : [...prevFavorites, courseID]
+        );
+      } else {
+        console.log("Error handling favorite course");
+      }
+    } catch (error) {
+      console.log("Error handling favorite course:", error);
+    }
+  };
+
   const handleSearchCourse = async (e) => {
     e.preventDefault();
 
@@ -41,8 +71,8 @@ const StudentDashboard = ({ user }) => {
 
       if (response.status === 200) {
         setResponseData(await response.json());
+        console.log(responseData);
       } else console.log("response data: ", responseData);
-       
     } catch (error) {
       console.log("Error while loading searching courses:", error);
     }
@@ -63,15 +93,14 @@ const StudentDashboard = ({ user }) => {
       if (response.status === 200) {
         setResponseData(await response.json());
       } else console.log("response data: ", responseData);
-       
     } catch (error) {
       console.log("Error while loading searching courses:", error);
     }
   };
-  
+
   return (
     <div className="min-h-screen flex flex-col bg-background">
-      <header className="bg-primary text-white p-4">
+      <header className="bg-newsecond text-white p-4">
         <h1 className="text-2xl text-center">Welcome, {user_id}!</h1>
       </header>
       <div className="p-4">
@@ -125,8 +154,17 @@ const StudentDashboard = ({ user }) => {
                     <td className="border px-4 py-2">{dataItem.yearTerm} </td>
                     <td className="border px-4 py-2">
                       {" "}
-                      <button className="btn btn-primary">
-                        Favorite Course
+                      <button
+                        className={`btn ${
+                          favoriteCourses.includes(dataItem.courseID)
+                            ? "btn-favorite"
+                            : "btn-primary"
+                        }`}
+                        onClick={() => handleFavoriteCourse(dataItem.courseID)}
+                      >
+                        {favoriteCourses.includes(dataItem.courseID)
+                          ? "Favorited"
+                          : "Favorite Course"}
                       </button>
                     </td>
                   </tr>
@@ -175,8 +213,17 @@ const StudentDashboard = ({ user }) => {
                     <td className="border px-4 py-2">{dataItem.yearTerm} </td>
                     <td className="border px-4 py-2">
                       {" "}
-                      <button className="btn btn-primary">
-                        Favorite Course
+                      <button
+                        className={`btn ${
+                          favoriteCourses.includes(dataItem.courseID)
+                            ? "btn-favorite"
+                            : "btn-primary"
+                        }`}
+                        onClick={() => handleFavoriteCourse(dataItem.courseID)}
+                      >
+                        {favoriteCourses.includes(dataItem.courseID)
+                          ? "Favorited"
+                          : "Favorite Course"}
                       </button>
                     </td>
                   </tr>
