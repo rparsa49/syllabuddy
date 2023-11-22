@@ -27,15 +27,6 @@ const Landing = () => {
           </Link>
         </div>
       </main>
-
-      <footer className="container mx-auto p-6 flex flex-col md:flex-row items-center justify-between text-black">
-        <p> Built by Team WeAreBadAtNames</p>
-        <div className="flex -mx-6">
-          <Link to="/aboutUs" className="mx-3 hover:opacity-80 duration-150">
-            About us | Contact
-          </Link>
-        </div>
-      </footer>
     </div>
   );
 };
