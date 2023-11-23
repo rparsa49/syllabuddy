@@ -7,16 +7,13 @@ const Login = ({ onLogin }) => {
   const [password, setPassword] = useState("");
   const navigate = useNavigate();
 
-
   const handleSubmit = async (e) => {
     e.preventDefault();
-
 
     const userData = {
       password,
       email,
     };
-
 
     try {
       const response = await fetch("http://127.0.0.1:5000/login", {
@@ -40,7 +37,6 @@ const Login = ({ onLogin }) => {
       console.log("Error while logging in:", error);
     }
   };
-
 
   return (
     <div>
