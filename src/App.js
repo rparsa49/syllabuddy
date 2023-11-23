@@ -15,6 +15,7 @@ import CourseDisplayPage from "./components/coursedisplay";
 import Test from "./components/test";
 import AboutUs from "./components/aboutUs";
 import FavoriteCourses from "./components/favoriteCourses";
+import ProfessorDashboard from "./components/professorDashboard";
 
 function App() {
   const [user, setUser] = React.useState(null);
@@ -37,8 +38,14 @@ function App() {
         <Route
           path="/dashboard"
           element={
-            isAuthenticated ? (
-              <StudentDashboard user={user} />
+            isAuthenticated && user ? (
+              user.user_type === "student" ? (
+                <StudentDashboard user={user} />
+              ) : user.user_type === "professor" ? (
+                <ProfessorDashboard user={user} />
+              ) : (
+                <Navigate to="/login" />
+              )
             ) : (
               <Navigate to="/login" />
             )

@@ -2,8 +2,7 @@ import React, { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
 
 const FavoriteCourses = ({ user }) => {
-  const [favoriteCourses, setFavoriteCourses] = useState([
-    { courseCode: "No Courses Yet...", courseName: "Seach for courses to get started!" }]);
+  const [favoriteCourses, setFavoriteCourses] = useState([]);
 
   useEffect(() => {
     console.log(user);
