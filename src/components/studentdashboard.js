@@ -6,6 +6,7 @@ const StudentDashboard = ({ user }) => {
   const navigate = useNavigate();
   const [courseName, setCourseName] = useState("");
   const [responseData, setResponseData] = useState([]);
+  const [profResponseData, setProfResponseData] = useState([]);
   const [professor, setProfessor] = useState("");
   const [favoriteCourses, setFavoriteCourses] = useState([]);
   var user_id = user.user_name;
@@ -111,8 +112,7 @@ const StudentDashboard = ({ user }) => {
             onClick={() => navigate("/favorite-courses")}
           >
             {/* Display one or two favorite courses here */}
-            <p>Course A</p>
-            <p>Course B</p>
+            <p>Click here to view your favorite courses!</p>
           </div>
         </div>
         <div className="mb-4">
@@ -205,7 +205,7 @@ const StudentDashboard = ({ user }) => {
                 </tr>
               </thead>
               <tbody>
-                {responseData.map((dataItem, index) => (
+                {profResponseData.map((dataItem, index) => (
                   <tr key={index}>
                     <td className="border px-4 py-2">{dataItem.courseCode}</td>
                     <td className="border px-4 py-2">{dataItem.courseName}</td>
