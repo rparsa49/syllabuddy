@@ -32,7 +32,6 @@ const Login = ({ onLogin }) => {
         const responseData = await response.json();
         console.log("User successfully logged in:", responseData);
 
-
         // Update the user state with the user data from the response.
         onLogin(responseData);
         navigate("/dashboard");
