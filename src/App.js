@@ -10,6 +10,12 @@ import LandingPage from "./components/landing";
 import RegistrationPage from "./components/register";
 import LoginPage from "./components/login";
 import StudentDashboard from "./components/studentdashboard";
+import CourseDisplayPage from "./components/coursedisplay";
+import AddCoursePage from "./components/addcourse";
+import Test from "./components/test";
+import AboutUs from "./components/aboutUs";
+import FavoriteCourses from "./components/favoriteCourses";
+import ProfessorDashboard from "./components/professorDashboard";
 
 function App() {
   const [user, setUser] = React.useState(null);
@@ -24,6 +30,7 @@ function App() {
           path="/login"
           element={<LoginPage onLogin={(userData) => setUser(userData)} />}
         />
+        <Route path="/test" element={<Test />} />
         <Route
           path="/dashboard"
           element={
