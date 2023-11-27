@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { useNavigate } from "react-router-dom";
+import { useNavigate, Link } from "react-router-dom";
 import { FaSearch } from "react-icons/fa";
 
 const ProfessorDashboard = ({ user }) => {
@@ -81,7 +81,7 @@ const ProfessorDashboard = ({ user }) => {
             className="bg-white border border-gray-300 rounded-lg p-4 cursor-pointer"
             onClick={() => navigate("/favorite-courses")}
           >
-            <p>Click here to view, edit, and add the courses you have taught!</p>
+            <p>Click here to view the courses you have taught!</p>
           </div>
         </div>
         <div className="mb-4">
@@ -170,7 +170,16 @@ const ProfessorDashboard = ({ user }) => {
           </div>
         </div>
       </div>
-
+      <div className="mt-auto p-4">
+        <Link to="/addcourse" className="btn btn-primary">
+          Add Courses
+        </Link>
+      </div>
+      <div className="mt-auto p-2">
+        <Link to="/editcourses" className="btn btn-accent ml-2">
+          Edit Courses
+        </Link>
+      </div>
       <div className="mt-auto p-4">
         <button className="block btn btn-secondary" onClick={handleLogout}>
           Log Out
