@@ -22,7 +22,7 @@ function App() {
 
   // Calculate the isAuthenticated status
   const isAuthenticated = !!user;
-
+  
   return (
     <Router>
       <NavBar isAuthenticated={isAuthenticated} />
@@ -32,16 +32,31 @@ function App() {
         <Route path="/coursedisplay" element={<CourseDisplayPage />} />
         <Route
           path="/login"
-          element={<LoginPage onLogin={(userData) => setUser(userData)} />}
+          element={
+            <LoginPage
+              onLogin={(userData) => {
+                setUser(userData);
+              }}
+            />
+          }
         />
-        <Route path="/test" element={<AddCoursePage />} />
+        <Route
+          path="/addcourse"
+          element={
+            isAuthenticated && user && user.role === "professor" ? (
+              <AddCoursePage />
+            ) : (
+              <Navigate to="/login" />
+            )
+          }
+        />
         <Route
           path="/dashboard"
           element={
             isAuthenticated && user ? (
-              user.user_type === "student" ? (
+              user.role === "student" ? (
                 <StudentDashboard user={user} />
-              ) : user.user_type === "professor" ? (
+              ) : user.role === "professor" ? (
                 <ProfessorDashboard user={user} />
               ) : (
                 <Navigate to="/login" />
