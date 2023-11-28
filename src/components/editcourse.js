@@ -96,7 +96,6 @@ const EditCoursePage = ({ user }) => {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-
     const tagsData = {
       tags: tags.split(",").map((tag) => tag.trim()),
     };
@@ -114,8 +113,9 @@ const EditCoursePage = ({ user }) => {
     formData.append("term", term);
     formData.append("syllabus", syllabus, syllabus.name);
     try {
+      console.log(courseID);
       const response = await fetch(
-        `http://127.0.0.1:5000/editcourse?user=${courseID}`,
+        `http://127.0.0.1:5000/editcourse?courseID=${courseID}`,
         {
           method: "POST",
           body: formData,
@@ -145,10 +145,17 @@ const EditCoursePage = ({ user }) => {
     }
   };
 
-  const handleCourseSelection = (course) => {
-    setCourseID(course.courseID);
+  const handleCourseSelection = (x) => {
+    console.log(x);
+    setCourseID(x);
+    // console.log("The courseID is: ", courseID);
     setEditMode(true);
   };
+
+  useEffect(() => {
+    console.log("The courseID is: ", courseID);
+    // setEditMode(true);
+  }, [courseID]);
 
   return (
     <div className="min-h-screen bg-newbg">
@@ -357,7 +364,7 @@ const EditCoursePage = ({ user }) => {
                 {courses.map((course, index) => (
                   <li
                     key={index}
-                    onClick={() => handleCourseSelection(course)}
+                    onClick={() => handleCourseSelection(course.courseID)}
                     className="border border-gray-300 p-2 mb-2 rounded-md cursor-pointer flex justify-between items-center"
                   >
                     <div className="flex-grow">
