@@ -1,6 +1,6 @@
 import React from "react";
 import { Link } from "react-router-dom";
-// 
+
 const CourseDisplayPage = () => {
     const courseName = "Software Engineering";
     const courseCode = "CSC-440";

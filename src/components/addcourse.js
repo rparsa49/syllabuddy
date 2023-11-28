@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import universities from "./universities.json";
 
 //
-const AddCoursePage = () => {
+const AddCoursePage = ({ user }) => {
   const [selectedUniversity, setSelectedUniversity] = useState(""); //course.universityID --- university.universityName...we need to store a corresponding course.universityID from the table
   const [courseCode, setCourseCode] = useState(""); //course.courseCode
   const [courseName, setCourseName] = useState(""); //course.courseName
