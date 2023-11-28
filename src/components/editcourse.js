@@ -347,10 +347,7 @@ const EditCoursePage = ({ user }) => {
                       <p className="text-red-600">{addCourseError}</p>
                     )}
                   </div>
-                </form>{" "}
-                <button className="btn btn-secondary" type="submit">
-                  Submit
-                </button>
+                </form>
               </div>
             </form>
           ) : (
