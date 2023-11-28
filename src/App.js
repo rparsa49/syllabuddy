@@ -12,11 +12,12 @@ import RegistrationPage from "./components/register";
 import LoginPage from "./components/login";
 import StudentDashboard from "./components/studentdashboard";
 import CourseDisplayPage from "./components/coursedisplay";
-import Test from "./components/test";
 import AboutUs from "./components/aboutUs";
 import FavoriteCourses from "./components/favoriteCourses";
 import ProfessorDashboard from "./components/professorDashboard";
 import AddCoursePage from "./components/addcourse";
+import EditCoursePage from "./components/editcourse";
+
 function App() {
   const [user, setUser] = React.useState(null);
 
@@ -44,7 +45,17 @@ function App() {
           path="/addcourse"
           element={
             isAuthenticated && user && user.role === "professor" ? (
-              <AddCoursePage />
+              <AddCoursePage user={user}/>
+            ) : (
+              <Navigate to="/login" />
+            )
+          }
+        />
+        <Route
+          path="/editcourses"
+          element={
+            isAuthenticated && user && user.role === "professor" ? (
+              <EditCoursePage user={user} />
             ) : (
               <Navigate to="/login" />
             )
