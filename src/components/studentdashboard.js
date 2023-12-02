@@ -6,8 +6,11 @@ const StudentDashboard = ({ user }) => {
   const navigate = useNavigate();
   const [courseName, setCourseName] = useState("");
   const [responseData, setResponseData] = useState([]);
-  const [profResponseData, setProfResponseData] = useState([]);
-  const [professor, setProfessor] = useState("");
+  const [professorName, setProfessorName] = useState("");
+  const [profresponseData, setprofResponseData] = useState([]);
+  const [firstName, setFirstName] = useState('');
+  const [lastName, setLastName] = useState('');
+
   const [favoriteCourses, setFavoriteCourses] = useState([]);
   var user_id = user.user_name;
 
@@ -88,11 +91,19 @@ const StudentDashboard = ({ user }) => {
         headers: {
           "Content-Type": "application/json",
         },
-        body: JSON.stringify({ courseName: courseName }),
+        body: JSON.stringify({ professorName: professorName }),
       });
 
       if (response.status === 200) {
-        setResponseData(await response.json());
+        const profresponseData = await response.json();
+      // Split professor name into first and last name
+      const [firstName, lastName] = profresponseData.professorName.split(' ');
+
+      setFirstName(firstName);
+      setLastName(lastName);
+      setprofResponseData(await response.json());
+      console.log(firstName, lastName);
+
       } else console.log("response data: ", responseData);
     } catch (error) {
       console.log("Error while loading searching courses:", error);
@@ -179,7 +190,7 @@ const StudentDashboard = ({ user }) => {
             <input
               type="text"
               placeholder="Enter a professor's name..."
-              onChange={(e) => setProfessor(e.target.value)}
+              onChange={(e) => setProfessorName(e.target.value)}
               className="border border-gray-300 p-2 rounded-md w-full"
             />
             <button
@@ -189,7 +200,7 @@ const StudentDashboard = ({ user }) => {
               <FaSearch />
             </button>
           </div>
-        </div>
+        </div> 
 
         <div className="mb-4">
           <h2 className="text-xl font-semibold mb-2">Seach Results </h2>
@@ -197,35 +208,23 @@ const StudentDashboard = ({ user }) => {
             <table>
               <thead>
                 <tr>
-                  <th className="border px-4 py-2">Course Code</th>
-                  <th className="border px-4 py-2">Course Name</th>
-                  <th className="border px-4 py-2">Instructor Name</th>
-                  <th className="border px-4 py-2">Year Term</th>
-                  <th className="border px-4 py-2">Favorite Course</th>
+                  <th className="border px-4 py-2">Professor Name</th>
+                  <th className="border px-4 py-2">Email</th>
+                  <th className="border px-4 py-2">Phone Number</th>
+                  <th className="border px-4 py-2">University Name</th>
+                  <th className="border px-4 py-2">Department</th>
+                  <th className="border px-4 py-2">Title</th>
                 </tr>
               </thead>
               <tbody>
-                {profResponseData.map((dataItem, index) => (
+                {profresponseData.map((dataItem, index) => (
                   <tr key={index}>
-                    <td className="border px-4 py-2">{dataItem.courseCode}</td>
-                    <td className="border px-4 py-2">{dataItem.courseName}</td>
                     <td className="border px-4 py-2">{`${dataItem.firstName} ${dataItem.lastName}`}</td>
+                    <td className="border px-4 py-2">{dataItem.email}</td>
+                    <td className="border px-4 py-2">{dataItem.phoneNUmber}</td>
                     <td className="border px-4 py-2">{dataItem.yearTerm} </td>
-                    <td className="border px-4 py-2">
-                      {" "}
-                      <button
-                        className={`btn ${
-                          favoriteCourses.includes(dataItem.courseID)
-                            ? "btn-favorite"
-                            : "btn-primary"
-                        }`}
-                        onClick={() => handleFavoriteCourse(dataItem.courseID)}
-                      >
-                        {favoriteCourses.includes(dataItem.courseID)
-                          ? "Favorited"
-                          : "Favorite Course"}
-                      </button>
-                    </td>
+                    <td className="border px-4 py-2">{dataItem.department} </td>
+                    <td className="border px-4 py-2">{dataItem.title} </td>
                   </tr>
                 ))}
               </tbody>
