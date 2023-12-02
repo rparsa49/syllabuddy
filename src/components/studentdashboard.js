@@ -84,25 +84,19 @@ const StudentDashboard = ({ user }) => {
 
   const handleSearchProfessor = async (e) => {
     e.preventDefault();
-
+    const [setFirstName, setLastName] = professorName.split(' ');
     try {
       const response = await fetch("http://127.0.0.1:5000/searchProfessor", {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
         },
-        body: JSON.stringify({ professorName: professorName }),
+        body: JSON.stringify({ professorName: professorName, firstName:firstName, lastName:lastName }),
       });
 
       if (response.status === 200) {
-        const profresponseData = await response.json();
-      // Split professor name into first and last name
-      const [firstName, lastName] = profresponseData.professorName.split(' ');
+        setprofResponseData(await response.json());
 
-      setFirstName(firstName);
-      setLastName(lastName);
-      setprofResponseData(await response.json());
-      console.log(firstName, lastName);
 
       } else console.log("response data: ", responseData);
     } catch (error) {
@@ -222,7 +216,7 @@ const StudentDashboard = ({ user }) => {
                     <td className="border px-4 py-2">{`${dataItem.firstName} ${dataItem.lastName}`}</td>
                     <td className="border px-4 py-2">{dataItem.email}</td>
                     <td className="border px-4 py-2">{dataItem.phoneNUmber}</td>
-                    <td className="border px-4 py-2">{dataItem.yearTerm} </td>
+                    <td className="border px-4 py-2">{dataItem.universityID} </td>
                     <td className="border px-4 py-2">{dataItem.department} </td>
                     <td className="border px-4 py-2">{dataItem.title} </td>
                   </tr>
