@@ -20,6 +20,7 @@ import EditCoursePage from "./components/editcourse";
 
 function App() {
   const [user, setUser] = React.useState(null);
+  const [course, setCourse] = React.useState(null);
 
   // Calculate the isAuthenticated status
   const isAuthenticated = !!user;
@@ -30,7 +31,7 @@ function App() {
       <Routes>
         <Route path="/" element={<LandingPage />} />
         <Route path="/register" element={<RegistrationPage />} />
-        <Route path="/coursedisplay" element={<CourseDisplayPage />} />
+        <Route path="/coursedisplay" element={<CourseDisplayPage courseID = {course}/>} />
         <Route
           path="/login"
           element={
@@ -66,9 +67,19 @@ function App() {
           element={
             isAuthenticated && user ? (
               user.role === "student" ? (
-                <StudentDashboard user={user} />
+                <StudentDashboard
+                  user={user}
+                  onSelect={(course) => {
+                    setCourse(course);
+                  }}
+                />
               ) : user.role === "professor" ? (
-                <ProfessorDashboard user={user} />
+                <ProfessorDashboard
+                  user={user}
+                  onSelect={(course) => {
+                    setCourse(course);
+                  }}
+                />
               ) : (
                 <Navigate to="/login" />
               )

@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { FaSearch } from "react-icons/fa";
 
-const StudentDashboard = ({ user }) => {
+const StudentDashboard = ({ user, onSelect }) => {
   const navigate = useNavigate();
   const [courseName, setCourseName] = useState("");
   const [responseData, setResponseData] = useState([]);
@@ -99,6 +99,12 @@ const StudentDashboard = ({ user }) => {
     }
   };
 
+  const handleCourseDisplay = (courseID) => {
+    console.log(courseID);
+    onSelect(courseID);
+    navigate(`/coursedisplay`);
+  };
+
   return (
     <div className="min-h-screen flex flex-col bg-background">
       <header className="bg-newsecond text-white p-4">
@@ -143,6 +149,7 @@ const StudentDashboard = ({ user }) => {
                   <th className="border px-4 py-2">Instructor Name</th>
                   <th className="border px-4 py-2">Year Term</th>
                   <th className="border px-4 py-2">Favorite Course</th>
+                  <th className="border px-4 py-2">View Course</th>
                 </tr>
               </thead>
               <tbody>
@@ -165,6 +172,15 @@ const StudentDashboard = ({ user }) => {
                         {favoriteCourses.includes(dataItem.courseID)
                           ? "Favorited"
                           : "Favorite Course"}
+                      </button>
+                    </td>
+                    <td className="border px-4 py-2">
+                      {" "}
+                      <button
+                        className={"btn btn-secondary"}
+                        onClick={() => handleCourseDisplay(dataItem.courseID)}
+                      >
+                        View Course
                       </button>
                     </td>
                   </tr>
