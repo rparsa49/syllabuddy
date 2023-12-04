@@ -12,37 +12,74 @@ import RegistrationPage from "./components/register";
 import LoginPage from "./components/login";
 import StudentDashboard from "./components/studentdashboard";
 import CourseDisplayPage from "./components/coursedisplay";
-import Test from "./components/test";
 import AboutUs from "./components/aboutUs";
 import FavoriteCourses from "./components/favoriteCourses";
 import ProfessorDashboard from "./components/professorDashboard";
+import AddCoursePage from "./components/addcourse";
+import EditCoursePage from "./components/editcourse";
 
 function App() {
   const [user, setUser] = React.useState(null);
+  const [course, setCourse] = React.useState(null);
 
   // Calculate the isAuthenticated status
   const isAuthenticated = !!user;
-
+  
   return (
     <Router>
       <NavBar isAuthenticated={isAuthenticated} />
       <Routes>
         <Route path="/" element={<LandingPage />} />
         <Route path="/register" element={<RegistrationPage />} />
-        <Route path="/coursedisplay" element={<CourseDisplayPage />} />
+        <Route path="/coursedisplay" element={<CourseDisplayPage courseID = {course}/>} />
         <Route
           path="/login"
-          element={<LoginPage onLogin={(userData) => setUser(userData)} />}
+          element={
+            <LoginPage
+              onLogin={(userData) => {
+                setUser(userData);
+              }}
+            />
+          }
         />
-        <Route path="/test" element={<Test />} />
+        <Route
+          path="/addcourse"
+          element={
+            isAuthenticated && user && user.role === "professor" ? (
+              <AddCoursePage user={user}/>
+            ) : (
+              <Navigate to="/login" />
+            )
+          }
+        />
+        <Route
+          path="/editcourses"
+          element={
+            isAuthenticated && user && user.role === "professor" ? (
+              <EditCoursePage user={user} />
+            ) : (
+              <Navigate to="/login" />
+            )
+          }
+        />
         <Route
           path="/dashboard"
           element={
             isAuthenticated && user ? (
-              user.user_type === "student" ? (
-                <StudentDashboard user={user} />
-              ) : user.user_type === "professor" ? (
-                <ProfessorDashboard user={user} />
+              user.role === "student" ? (
+                <StudentDashboard
+                  user={user}
+                  onSelect={(course) => {
+                    setCourse(course);
+                  }}
+                />
+              ) : user.role === "professor" ? (
+                <ProfessorDashboard
+                  user={user}
+                  onSelect={(course) => {
+                    setCourse(course);
+                  }}
+                />
               ) : (
                 <Navigate to="/login" />
               )

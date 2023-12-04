@@ -1,7 +1,6 @@
 import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
 
-
 const Login = ({ onLogin }) => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
@@ -23,7 +22,6 @@ const Login = ({ onLogin }) => {
         },
         body: JSON.stringify(userData),
       });
-
 
       if (response.status === 200) {
         const responseData = await response.json();
@@ -53,7 +51,7 @@ const Login = ({ onLogin }) => {
                 <div className="mb-10">
                   <label
                     className="block text-sm font-semibold text-text"
-                    for="email"
+                    htmlFor="email"
                   >
                     Email:
                   </label>
@@ -68,11 +66,10 @@ const Login = ({ onLogin }) => {
                   />
                 </div>
 
-
                 <div className="mb-4">
                   <label
                     className="block text-sm font-semibold text-text"
-                    for="password"
+                    htmlFor="password"
                   >
                     Password:
                   </label>
@@ -86,7 +83,6 @@ const Login = ({ onLogin }) => {
                     name="password"
                   />
                 </div>
-
 
                 <div className="mb-4 flex justify-center ">
                   <button
@@ -105,6 +101,5 @@ const Login = ({ onLogin }) => {
     </div>
   );
 };
-
 
 export default Login;
