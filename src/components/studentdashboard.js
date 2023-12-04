@@ -6,10 +6,10 @@ const StudentDashboard = ({ user, onSelect }) => {
   const navigate = useNavigate();
   const [courseName, setCourseName] = useState("");
   const [responseData, setResponseData] = useState([]);
-  // const [professorName, setProfessorName] = useState("");
-  // const [profresponseData, setprofResponseData] = useState([]);
-  // const [firstName, setFirstName] = useState('');
-  // const [lastName, setLastName] = useState('');
+  const [professorName, setProfessorName] = useState("");
+  const [profresponseData, setprofResponseData] = useState([]);
+  const [firstName, setFirstName] = useState('');
+  const [lastName, setLastName] = useState('');
 
   const [favoriteCourses, setFavoriteCourses] = useState([]);
   var user_id = user.user_name;
@@ -82,27 +82,27 @@ const StudentDashboard = ({ user, onSelect }) => {
     }
   };
 
-  // const handleSearchProfessor = async (e) => {
-  //   e.preventDefault();
-  //   const [setFirstName, setLastName] = professorName.split(' ');
-  //   try {
-  //     const response = await fetch("http://127.0.0.1:5000/searchProfessor", {
-  //       method: "POST",
-  //       headers: {
-  //         "Content-Type": "application/json",
-  //       },
-  //       body: JSON.stringify({ professorName: professorName, firstName:firstName, lastName:lastName }),
-  //     });
+  const handleSearchProfessor = async (e) => {
+    e.preventDefault();
+    const [setFirstName, setLastName] = professorName.split(' ');
+    try {
+      const response = await fetch("http://127.0.0.1:5000/searchProfessor", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({ professorName: professorName, firstName:firstName, lastName:lastName }),
+      });
 
-  //     if (response.status === 200) {
-  //       setprofResponseData(await response.json());
+      if (response.status === 200) {
+        setprofResponseData(await response.json());
 
 
-  //     } else console.log("response data: ", responseData);
-  //   } catch (error) {
-  //     console.log("Error while loading searching courses:", error);
-  //   }
-  // };
+      } else console.log("response data: ", responseData);
+    } catch (error) {
+      console.log("Error while loading searching courses:", error);
+    }
+  };
 
   const handleCourseDisplay = (courseID) => {
     console.log(courseID);
@@ -194,7 +194,7 @@ const StudentDashboard = ({ user, onSelect }) => {
             </table>
           </div>
         </div>
-        {/* <div className="mb-4">
+        <div className="mb-4">
           <h2 className="text-xl font-semibold mb-2">Search for Professors</h2>
           <div className="flex">
             <input
@@ -210,9 +210,9 @@ const StudentDashboard = ({ user, onSelect }) => {
               <FaSearch />
             </button>
           </div>
-        </div>  */}
+        </div>  
 
-        {/* <div className="mb-4">
+        <div className="mb-4">
           <h2 className="text-xl font-semibold mb-2">Seach Results </h2>
           <div>
             <table>
@@ -240,7 +240,7 @@ const StudentDashboard = ({ user, onSelect }) => {
               </tbody>
             </table>
           </div>
-        </div> */}
+        </div>
       </div>
 
       <div className="mt-auto p-4">
