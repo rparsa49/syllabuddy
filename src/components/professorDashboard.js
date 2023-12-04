@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import { useNavigate, Link } from "react-router-dom";
 import { FaSearch } from "react-icons/fa";
 
-const ProfessorDashboard = ({ user }) => {
+const ProfessorDashboard = ({ user, onSelect }) => {
   const navigate = useNavigate();
   const [courseName, setCourseName] = useState("");
   const [responseData, setResponseData] = useState([]);
@@ -69,6 +69,13 @@ const ProfessorDashboard = ({ user }) => {
   //   }
   // };
 
+
+  const handleCourseDisplay = (courseID) => {
+      console.log(courseID);
+      onSelect(courseID);
+      navigate(`/coursedisplay`);
+    };
+
   return (
     <div className="min-h-screen flex flex-col bg-background">
       <header className="bg-newsecond text-white p-4">
@@ -120,6 +127,15 @@ const ProfessorDashboard = ({ user }) => {
                     <td className="border px-4 py-2">{dataItem.courseName}</td>
                     <td className="border px-4 py-2">{`${dataItem.firstName} ${dataItem.lastName}`}</td>
                     <td className="border px-4 py-2">{dataItem.yearTerm} </td>
+                    <td className="border px-4 py-2">
+                      {" "}
+                      <button
+                        className={"btn btn-secondary"}
+                        onClick={() => handleCourseDisplay(dataItem.courseID)}
+                      >
+                        View Course
+                      </button>
+                    </td>
                   </tr>
                 ))}
               </tbody>
