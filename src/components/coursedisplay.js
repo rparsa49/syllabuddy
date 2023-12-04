@@ -11,7 +11,28 @@ const CourseDisplayPage = () => {
     const profName = "Sixia Chen"
     const terms = ["Fall 2022", "Spring 2023", "Fall 2023"];
 
-  return (
+    const handleDownloadFile = async (fileName) => {
+        try {
+            const response = await fetch(`http://your_backend_url/download/${fileName}`, {
+                method: 'GET',
+            });
+
+            // Trigger the file download by creating a blob URL
+            const blob = await response.blob();
+            const url = window.URL.createObjectURL(new Blob([blob]));
+            const link = document.createElement('a');
+            link.href = url;
+            link.setAttribute('download', fileName); // Set the desired file name
+            document.body.appendChild(link);
+            link.click();
+            document.body.removeChild(link);
+            } catch (error) {
+            console.error('Error downloading the file:', error);
+            // Handle error scenario, e.g., show an error message to the user
+            }
+    }
+
+        return (
     <div className="min-h-screen flex flex-col bg-newbg">
         <main className="container mx-auto px-6 pt-10 flex-1 h-screen">
             {/* Course name, code, and university name */}
@@ -71,20 +92,14 @@ const CourseDisplayPage = () => {
                     </div>
                     <div className="collapse-content text-base-100">
                         <a href="TestPDFfile.pdf" download= "syllabus.pdf">
-                            <button className="btn btn-warning">
-                                Download
+                            <button onClick={() => handleDownloadFile('TestPDFfile.pdf')} className="btn btn-warning"> 
+                                Download File
                             </button>
                         </a>
                     </div>
                     </div>
                 ))}
-                
-                
-            
             </div>
-                
-            
-
         </main>
     </div>
   );
