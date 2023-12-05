@@ -66,7 +66,7 @@ const CourseDisplayPage = (props) => {
               <h2 className="inline-headings text-xl md:text-2xl lg:text-4xl font-sans text-newtext">
                 {displayData.profName}
               </h2>
-              <h3 className="text-l md:text-xl lg:text-2xl font-sans text-newtext text-left">
+              <h3 className="text-l md:text-xl lg:text-2xl font-sans mt-2 text-newtext text-left">
                 {displayData.university} | {displayData.courseCode}
               </h3>
             </div>

@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import universities from "./universities.json";
 
 
@@ -13,6 +13,9 @@ const RegistrationPage = () => {
   const [userName, setUserName] = useState("");
   const [registrationError, setRegistrationError] = useState("");
 
+  useEffect(() => {
+    window.scrollTo(0,0)
+  })
 
   const handleFirstNameChange = (e) => {
     setFirstName(e.target.value);
@@ -107,22 +110,22 @@ const RegistrationPage = () => {
 
   return (
     <section id="register">
-      <div className="min-h-screen flex flex-col bg-background">
+      <div className="min-h-screen flex flex-col bg-newbg">
         <div className="geometric-background flex-grow flex items-center justify-center">
           <div className="bg-white p-8 rounded-lg shadow-md w-full sm:w-2/3 lg:w-1/2">
             <h1 className="text-3xl font-semibold text-center mb-4 text-primary">
               Start Your Syllabuddy Journey...
             </h1>
-            <form className="space-y-4">
-              <div>
+            <form className="space-y-4 max-w-md mx-auto text-center">
+              <div className="">
                 <label
                   htmlFor="userType"
-                  className="block text-sm font-semibold text-text"
+                  className="block text-sm font-semibold text-text text-left ml-16"
                 >
                   Select your role below:
                 </label>
                 <select
-                  className="select select-accent w-full max-w-xs"
+                  className="bg-newbg text-newtext select w-full max-w-xs"
                   value={userType}
                   onChange={handleUserTypeChange}
                   name="userType"
@@ -137,13 +140,13 @@ const RegistrationPage = () => {
               <div>
                 <label
                   htmlFor="University"
-                  className="block text-sm font-semibold text-text"
+                  className="block text-sm font-semibold text-text text-left ml-16"
                 >
                   Select your university below:
                 </label>
                 <select
                   name="University"
-                  className="select w-full max-w-xs"
+                  className="bg-newbg text-newtext select w-full max-w-xs"
                   value={University}
                   onChange={handleUniversityChange}
                 >
@@ -160,7 +163,7 @@ const RegistrationPage = () => {
               <div>
                 <label
                   htmlFor="firstName"
-                  className="block text-sm font-semibold text-text"
+                  className="block text-sm font-semibold text-text text-left ml-16"
                 >
                   Enter your first name:
                 </label>
@@ -168,7 +171,7 @@ const RegistrationPage = () => {
                   type="text"
                   name="firstName"
                   placeholder="Jane"
-                  className="input input-bordered input-accent w-full max-w-xs"
+                  className="bg-newbg text-newtext input w-full max-w-xs"
                   value={firstName}
                   onChange={handleFirstNameChange}
                 />
@@ -176,7 +179,7 @@ const RegistrationPage = () => {
               <div>
                 <label
                   htmlFor="lastName"
-                  className="block text-sm font-semibold text-text"
+                  className="block text-sm font-semibold text-text text-left ml-16"
                 >
                   Enter your last name:
                 </label>
@@ -184,7 +187,7 @@ const RegistrationPage = () => {
                   type="text"
                   name="lastName"
                   placeholder="Doe"
-                  className="input input-bordered input-accent w-full max-w-xs"
+                  className="bg-newbg text-newtext input w-full max-w-xs"
                   value={lastName}
                   onChange={handleLastNameChange}
                 />
@@ -192,15 +195,15 @@ const RegistrationPage = () => {
               <div>
                 <label
                   htmlFor="userName"
-                  className="block text-sm font-semibold text-text"
+                  className="block text-sm font-semibold text-text text-left ml-16"
                 >
-                  Enter your user name (This will be what you use to login!):
+                  Enter your user name:
                 </label>
                 <input
                   type="text"
                   name="userName"
                   placeholder="Your username!"
-                  className="input input-bordered input-accent w-full max-w-xs"
+                  className="input w-full max-w-xs"
                   value={userName}
                   onChange={handleUserNameChange}
                 />
@@ -208,15 +211,15 @@ const RegistrationPage = () => {
               <div>
                 <label
                   htmlFor="email"
-                  className="block text-sm font-semibold text-text"
+                  className="block text-sm font-semibold text-text text-left ml-16"
                 >
-                  Enter your email:
+                  Enter your email (This will be what you use to login!):
                 </label>
                 <input
                   type="text"
                   name="email"
                   placeholder="example@example.edu"
-                  className="input input-bordered input-accent w-full max-w-xs"
+                  className="bg-newbg text-newtext input w-full max-w-xs"
                   value={email}
                   onChange={handleEmailChange}
                 />
@@ -224,7 +227,7 @@ const RegistrationPage = () => {
               <div>
                 <label
                   htmlFor="phoneNumber"
-                  className="block text-sm font-semibold text-text"
+                  className="block text-sm font-semibold text-text text-left ml-16"
                 >
                   Enter your phone number:
                 </label>
@@ -232,7 +235,7 @@ const RegistrationPage = () => {
                   type="text"
                   name="phoneNumber"
                   placeholder="123456789"
-                  className="input input-bordered input-accent w-full max-w-xs"
+                  className="bg-newbg text-newtext input w-full max-w-xs"
                   value={phoneNumber}
                   onChange={handlePhoneNumberChange}
                   id="phoneNumber"
@@ -241,7 +244,7 @@ const RegistrationPage = () => {
               <div>
                 <label
                   htmlFor="password"
-                  className="block text-sm font-semibold text-text"
+                  className="block text-sm font-semibold text-text text-left ml-16"
                 >
                   Enter your password:
                 </label>
@@ -249,14 +252,14 @@ const RegistrationPage = () => {
                   type="password"
                   name="password"
                   placeholder="Don't share your password!"
-                  className="input input-bordered input-accent w-full max-w-xs"
+                  className="bg-newbg text-newtext input  w-full max-w-xs"
                   value={password}
                   onChange={handlePasswordChange}
                 />
               </div>
               <div className="text-center">
                 <button
-                  className="btn btn-secondary"
+                  className="btn btn-accent"
                   type="submit"
                   onClick={handleSubmit}
                 >
