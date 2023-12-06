@@ -12,41 +12,19 @@ const CourseDisplayPage = (props) => {
         university: "DUMMY",
         profName:"DUMMY",
         terms: ["DUMMY", "DUMMY", "DUMMY"],
+        courseID: "DUMMY"
+        // syllabus: null,
     });
     const [tags, setTags] = useState([]);
     const [terms, setTerms] = useState ([]);
     const tagsValues = useState(null);
     const termsValues = useState(null);
-
- // Define the download function
- const handleDownload = () => {
-  fetch("http://127.0.0.1:5000/download/syllabus.pdf", {
-    method: "GET",
-    responseType: "blob",
-  })
-    .then((response) => {
-      if (response.status === 200) {
-        response.blob().then((blob) => {
-          const url = window.URL.createObjectURL(blob);
-          const link = document.createElement("a");
-          link.href = url;
-          link.download = "syllabus.pdf";
-          link.click();
-        });
-      } else {
-        console.error("Error downloading syllabus:", response.status);
-      }
-    })
-    .catch((error) => {
-      console.error("Error downloading syllabus:", error);
-    });
-};
-
+    const [syllabus, setSyllabus] = useState ([]);
+    const courseID = props;
 
 //const CourseDisplay = (props) => {
     useEffect(() => {
         //console.log(props)
-        const courseID = props;
 
         const fetchDisplayData = async (courseID) => {
             try {
@@ -65,8 +43,6 @@ const CourseDisplayPage = (props) => {
                 // Parse the tags string into an array
                 const parsedTags = JSON.parse(data.tags).tags || [];
                 setDisplayData(data);
-                setTags(parsedTags);
-                console.log(parsedTags);
             } else console.log("display data: ", displayData);
             } catch (error) {
             console.log("Error while loading display page:", error);
@@ -77,6 +53,27 @@ const CourseDisplayPage = (props) => {
 
     }, [props, setDisplayData]);
 
+    const handledownloadFile = async (e) => {
+      e.preventDefault();
+      try {
+        const response = await fetch("http://127.0.0.1:5000/downloadFile", {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify({courseID}),
+
+        });
+  
+        if (response.status === 200) {
+          setSyllabus(await response.json());
+  
+  
+        } else console.log("response data: ", syllabus);
+      } catch (error) {
+        console.log("Error while loading downloadFile:", error);
+      }
+    };
 
   return (
     <div className="min-h-screen flex flex-col bg-newbg">
@@ -136,9 +133,15 @@ const CourseDisplayPage = (props) => {
             {/* Available Syllabi */}
             <div className="text-l md:text-xl lg:text-3xl pt-1 font-sans mb-4 text-newtext text-left">
               Available Syllabi:
+              <br></br>
+                  <button className="btn btn-warning"
+                  onClick={handledownloadFile}
+                  >Download</button>
             </div>
 
-            <div>
+            
+
+            {/* <div>
               {terms.map((item, index) => (
                 <div key={index} className="collapse collapse-arrow bg-newprim">
                   <input type="radio" name="my-accordion-2" checked="checked" />
@@ -152,7 +155,7 @@ const CourseDisplayPage = (props) => {
                   </div>
                 </div>
               ))}
-            </div>
+            </div> */}
           </>
         ) : (
           <p>Loading...</p>

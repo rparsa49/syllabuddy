@@ -8,8 +8,8 @@ const StudentDashboard = ({ user, onSelect }) => {
   const [responseData, setResponseData] = useState([]);
   const [professorName, setProfessorName] = useState("");
   const [profresponseData, setprofResponseData] = useState([]);
-  const [firstName, setFirstName] = useState('');
-  const [lastName, setLastName] = useState('');
+  // const [firstName, setFirstName] = useState('');
+  // const [lastName, setLastName] = useState('');
 
   const [favoriteCourses, setFavoriteCourses] = useState([]);
   var user_id = user.user_name;
@@ -84,23 +84,22 @@ const StudentDashboard = ({ user, onSelect }) => {
 
   const handleSearchProfessor = async (e) => {
     e.preventDefault();
-    const [setFirstName, setLastName] = professorName.split(' ');
+    // const [setFirstName, setLastName] = professorName.split(' ');
     try {
       const response = await fetch("http://127.0.0.1:5000/searchProfessor", {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
         },
-        body: JSON.stringify({ professorName: professorName, firstName:firstName, lastName:lastName }),
+        body: JSON.stringify({ professorName: professorName}),
       });
-
       if (response.status === 200) {
         setprofResponseData(await response.json());
 
 
       } else console.log("response data: ", responseData);
     } catch (error) {
-      console.log("Error while loading searching courses:", error);
+      console.log("Error while loading searching professor:", error);
     }
   };
 
@@ -231,8 +230,8 @@ const StudentDashboard = ({ user, onSelect }) => {
                   <tr key={index}>
                     <td className="border px-4 py-2">{`${dataItem.firstName} ${dataItem.lastName}`}</td>
                     <td className="border px-4 py-2">{dataItem.email}</td>
-                    <td className="border px-4 py-2">{dataItem.phoneNUmber}</td>
-                    <td className="border px-4 py-2">{dataItem.universityID} </td>
+                    <td className="border px-4 py-2">{dataItem.phoneNumber}</td>
+                    <td className="border px-4 py-2">{dataItem.universityName} </td>
                     <td className="border px-4 py-2">{dataItem.department} </td>
                     <td className="border px-4 py-2">{dataItem.title} </td>
                   </tr>
