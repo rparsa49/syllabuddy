@@ -33,7 +33,7 @@ const AboutUs = () => {
           <h4 className="text-lg font-semibold">Roya Parsa</h4>
           <p>
             Hi! I'm Roya Parsa, a junior Computer Science major at Adelphi
-            University, specializing in Software Engineering. I am also a member
+            University, specializing in Software Engineering with a Mathematics minor. I am also a member
             of the Adelphi Honors College and currently work as a software
             engineer intern at North Atlantic Industries. My experience includes
             full-stack development, mobile development, scripting, and operating
@@ -46,9 +46,9 @@ const AboutUs = () => {
 
       <div className="mb-6 flex items-center">
         <img
-          src={process.env.PUBLIC_URL + "/nhat.jpeg"}
+          src={process.env.PUBLIC_URL + "/nhat.jpg"}
           alt="Nhat Truong"
-          className="w-16 h-16 rounded-lg shadow-lg mr-4"
+          className="w-32 h-32 rounded-lg shadow-lg mr-4"
         />
         <div>
           <h4 className="text-lg font-semibold">Nhat Truong</h4>
@@ -67,9 +67,9 @@ const AboutUs = () => {
 
       <div className="mb-6 flex items-center">
         <img
-          src={process.env.PUBLIC_URL + "/michael.jpeg"}
+          src={process.env.PUBLIC_URL + "/michael.png"}
           alt="Michael Scandiffio"
-          className="w-16 h-16 rounded-lg shadow-lg mr-4"
+          className="w-32 h-32 rounded-lg shadow-lg mr-4"
         />
         <div>
           <h4 className="text-lg font-semibold">Michael Scandiffio</h4>
@@ -89,9 +89,9 @@ const AboutUs = () => {
 
       <div className="mb-6 flex items-center">
         <img
-          src={process.env.PUBLIC_URL + "/jordan.jpeg"}
+          src={process.env.PUBLIC_URL + "/jordan.png"}
           alt="Jordan Rivas"
-          className="w-16 h-16 rounded-lg shadow-lg mr-4"
+          className="w-32 h-32 rounded-lg shadow-lg mr-4"
         />
         <div>
           <h4 className="text-lg font-semibold">Jordan Rivas</h4>

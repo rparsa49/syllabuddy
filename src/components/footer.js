@@ -6,7 +6,7 @@ export default function Footer() {
         <p> Built by Team WeAreBadAtNames</p>
         <div className="flex -mx-6">
           <a href="/aboutUs" className="mx-3 hover:opacity-80 duration-150">
-            About us
+            About Us
           </a>
         </div>
       </footer>
