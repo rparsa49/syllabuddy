@@ -6,7 +6,7 @@ const StudentDashboard = ({ user, onSelect }) => {
   const navigate = useNavigate();
   const [courseName, setCourseName] = useState("");
   const [responseData, setResponseData] = useState([]);
-  const [professorName, setProfessorName] = useState("");
+  const [professorName, setProfessor] = useState("");
   const [profresponseData, setprofResponseData] = useState([]);
   // const [firstName, setFirstName] = useState('');
   // const [lastName, setLastName] = useState('');
@@ -116,7 +116,9 @@ const StudentDashboard = ({ user, onSelect }) => {
       </header>
       <div className="p-4">
         <div className="mb-4">
-          <h2 className="text-xl text-newtext font-semibold mb-2">Favorite Courses</h2>
+          <h2 className="text-xl text-newtext font-semibold mb-2">
+            Favorite Courses
+          </h2>
           <div
             className="bg-newprim text-newtext border border-gray-300 rounded-lg p-4 cursor-pointer"
             onClick={() => navigate("/favorite-courses")}
@@ -126,7 +128,9 @@ const StudentDashboard = ({ user, onSelect }) => {
           </div>
         </div>
         <div className="mb-4">
-          <h2 className="text-xl text-newtext  font-semibold mb-2">Search for Courses</h2>
+          <h2 className="text-xl text-newtext  font-semibold mb-2">
+            Search for Courses
+          </h2>
           <div className="flex">
             <input
               type="text"
@@ -143,26 +147,40 @@ const StudentDashboard = ({ user, onSelect }) => {
           </div>
         </div>
         <div className="mb-4">
-          <h2 className="text-xl text-newtext font-semibold mb-2">Search Results</h2>
+          <h2 className="text-xl text-newtext font-semibold mb-2">
+            Search Results
+          </h2>
           <div>
             <table>
               <thead>
                 <tr>
-                  <th className="border text-newtext  px-4 py-2">Course Code</th>
+                  <th className="border text-newtext  px-4 py-2">
+                    Course Code
+                  </th>
                   <th className="border text-newtext px-4 py-2">Course Name</th>
-                  <th className="border text-newtext px-4 py-2">Instructor Name</th>
+                  <th className="border text-newtext px-4 py-2">
+                    Instructor Name
+                  </th>
                   <th className="border text-newtext px-4 py-2">Year Term</th>
-                  <th className="border text-newtext px-4 py-2">Favorite Course</th>
+                  <th className="border text-newtext px-4 py-2">
+                    Favorite Course
+                  </th>
                   <th className="border text-newtext px-4 py-2">View Course</th>
                 </tr>
               </thead>
               <tbody>
                 {responseData.map((dataItem, index) => (
                   <tr key={index}>
-                    <td className="border text-newtext  px-4 py-2">{dataItem.courseCode}</td>
-                    <td className="border text-newtext px-4 py-2">{dataItem.courseName}</td>
+                    <td className="border text-newtext  px-4 py-2">
+                      {dataItem.courseCode}
+                    </td>
+                    <td className="border text-newtext px-4 py-2">
+                      {dataItem.courseName}
+                    </td>
                     <td className="border text-newtext px-4 py-2">{`${dataItem.firstName} ${dataItem.lastName}`}</td>
-                    <td className="border text-newtext px-4 py-2">{dataItem.yearTerm} </td>
+                    <td className="border text-newtext px-4 py-2">
+                      {dataItem.yearTerm}{" "}
+                    </td>
                     <td className="border px-4 py-2">
                       {" "}
                       <button
@@ -194,7 +212,9 @@ const StudentDashboard = ({ user, onSelect }) => {
           </div>
         </div>
         <div className="mb-4">
-          <h2 className="text-xl text-newtext font-semibold mb-2">Search for Professors</h2>
+          <h2 className="text-xl text-newtext font-semibold mb-2">
+            Search for Professors
+          </h2>
           <div className="flex">
             <input
               type="text"
@@ -209,30 +229,67 @@ const StudentDashboard = ({ user, onSelect }) => {
               <FaSearch />
             </button>
           </div>
-        </div>  
+        </div>
 
         <div className="mb-4">
-          <h2 className="text-xl text-newtext font-semibold mb-2">Search Results </h2>
+          <h2 className="text-xl text-newtext font-semibold mb-2">
+            Search Results{" "}
+          </h2>
           <div>
             <table>
               <thead>
                 <tr>
-                  <th className="border text-newtext px-4 py-2">Course Code</th>
+                  <th className="border text-newtext  px-4 py-2">
+                    Course Code
+                  </th>
                   <th className="border text-newtext px-4 py-2">Course Name</th>
-                  <th className="border text-newtext  px-4 py-2">Instructor Name</th>
+                  <th className="border text-newtext px-4 py-2">
+                    Instructor Name
+                  </th>
                   <th className="border text-newtext px-4 py-2">Year Term</th>
-                  <th className="border text-newtext px-4 py-2">Favorite Course</th>
+                  <th className="border text-newtext px-4 py-2">
+                    Favorite Course
+                  </th>
+                  <th className="border text-newtext px-4 py-2">View Course</th>
                 </tr>
               </thead>
               <tbody>
                 {profresponseData.map((dataItem, index) => (
                   <tr key={index}>
-                    <td className="border px-4 py-2">{`${dataItem.firstName} ${dataItem.lastName}`}</td>
-                    <td className="border px-4 py-2">{dataItem.email}</td>
-                    <td className="border px-4 py-2">{dataItem.phoneNumber}</td>
-                    <td className="border px-4 py-2">{dataItem.universityName} </td>
-                    <td className="border px-4 py-2">{dataItem.department} </td>
-                    <td className="border px-4 py-2">{dataItem.title} </td>
+                    <td className="border text-newtext  px-4 py-2">
+                      {dataItem.courseCode}
+                    </td>
+                    <td className="border text-newtext px-4 py-2">
+                      {dataItem.courseName}
+                    </td>
+                    <td className="border text-newtext px-4 py-2">{`${dataItem.firstName} ${dataItem.lastName}`}</td>
+                    <td className="border text-newtext px-4 py-2">
+                      {dataItem.term}{" "}
+                    </td>
+                    <td className="border px-4 py-2">
+                      {" "}
+                      <button
+                        className={`btn ${
+                          favoriteCourses.includes(dataItem.courseID)
+                            ? "btn-neutral"
+                            : "btn-accent"
+                        }`}
+                        onClick={() => handleFavoriteCourse(dataItem.courseID)}
+                      >
+                        {favoriteCourses.includes(dataItem.courseID)
+                          ? "Favorited"
+                          : "Favorite Course"}
+                      </button>
+                    </td>
+                    <td className="border px-4 py-2">
+                      {" "}
+                      <button
+                        className={"btn btn-primary"}
+                        onClick={() => handleCourseDisplay(dataItem.courseID)}
+                      >
+                        View Course
+                      </button>
+                    </td>
                   </tr>
                 ))}
               </tbody>
