@@ -20,7 +20,7 @@ const CourseDisplayPage = (props) => {
 
 //const CourseDisplay = (props) => {
     useEffect(() => {
-        //console.log(props)
+        console.log(props)
         const courseID = props;
 
         const fetchDisplayData = async (courseID) => {
