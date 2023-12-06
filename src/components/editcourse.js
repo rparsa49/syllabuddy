@@ -24,7 +24,7 @@ const EditCoursePage = ({ user }) => {
     const fetchData = async () => {
       try {
         const response = await fetch(
-          `https://18.191.207.251:8000/viewcourses?user=${user_id}`
+          `http://127.0.0.1:5000/viewcourses?user=${user_id}`
         );
         if (response.status === 200) {
           const data = await response.json();
@@ -117,7 +117,7 @@ const EditCoursePage = ({ user }) => {
     try {
       console.log(courseID);
       const response = await fetch(
-        `https://18.191.207.251:8000/editcourse?courseID=${courseID}`,
+        `http://127.0.0.1:5000/editcourse?courseID=${courseID}`,
         {
           method: "POST",
           body: formData,

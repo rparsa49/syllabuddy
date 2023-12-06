@@ -13,7 +13,7 @@ const ProfessorDashboard = ({ user, onSelect }) => {
   
   const handleLogout = async () => {
     try {
-      const response = await fetch("https://18.191.207.251:8000/logout", {
+      const response = await fetch("http://127.0.0.1:5000/logout", {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
@@ -33,7 +33,7 @@ const ProfessorDashboard = ({ user, onSelect }) => {
     e.preventDefault();
 
     try {
-      const response = await fetch("https://18.191.207.251:8000/searchCourse", {
+      const response = await fetch("http://127.0.0.1:5000/searchCourse", {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
@@ -55,7 +55,7 @@ const ProfessorDashboard = ({ user, onSelect }) => {
 
     try {
       const response = await fetch(
-        "https://18.191.207.251:8000/searchProfessor",
+        "http://127.0.0.1:5000/searchProfessor",
         {
           method: "POST",
           headers: {

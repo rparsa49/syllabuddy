@@ -4,12 +4,12 @@ import { useNavigate, Link } from "react-router-dom";
 const YourCourses = ({ user, onSelect }) => {
   const navigate = useNavigate();
   const [courses, setCourses] = useState([]);
-  // rn build
+  // rn buildnp
   // Helper function to fetch courses from the server
   const fetchCourses = async () => {
     try {
       const response = await fetch(
-        `https://18.191.207.251:8000/ViewCoursesByProfessorID?user=${user.user_id}`
+        `http://127.0.0.1:5000/ViewCoursesByProfessorID?user=${user.user_id}`
       );
 
       if (!response.ok) {
@@ -34,7 +34,7 @@ const YourCourses = ({ user, onSelect }) => {
     try {
       // Make a request to the Flask endpoint to remove the course association
       const response = await fetch(
-        `https://18.191.207.251:8000/removeCourse?userID=${userID}&courseID=${courseID}`,
+        `http://127.0.0.1:5000/removeCourse?userID=${userID}&courseID=${courseID}`,
         {
           method: "POST",
         }
