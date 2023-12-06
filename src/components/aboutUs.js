@@ -111,12 +111,6 @@ const AboutUs = () => {
         </div>
       </div>
 
-      <h2 className="text-2xl font-semibold mb-2">Contact Us</h2>
-      <p className="mb-6">
-        We're excited to connect with you and answer any questions you may have.
-        Feel free to get in touch with our team. Roya Parsa will serve as the
-        main point of contact. Her email is royaparsa294@gmail.com
-      </p>
       <button
         className="bg-newprim text-white font-semibold py-2 px-4 rounded-md hover-bg-primary-dark"
         onClick={() => navigate("/")}

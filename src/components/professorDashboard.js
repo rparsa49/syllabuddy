@@ -6,8 +6,9 @@ const ProfessorDashboard = ({ user, onSelect }) => {
   const navigate = useNavigate();
   const [courseName, setCourseName] = useState("");
   const [responseData, setResponseData] = useState([]);
-  // const [profResponseData, setProfResponseData] = useState([]);
-  // const [professor, setProfessor] = useState("");
+  const [profResponseData, setProfResponseData] = useState([]);
+  const [professor, setProfessor] = useState("");
+
   var user_id = user.user_name;
   
   const handleLogout = async () => {
@@ -143,7 +144,7 @@ const ProfessorDashboard = ({ user, onSelect }) => {
             </table>
           </div>
         </div>
-        <div className="mb-4">
+        {/* <div className="mb-4">
           <h2 className="text-xl font-semibold mb-2 text-newtext">Search for Professors</h2>
           <div className="flex">
             <input
@@ -159,9 +160,9 @@ const ProfessorDashboard = ({ user, onSelect }) => {
               <FaSearch />
             </button>
           </div>
-        </div>
+        </div> */}
 
-        <div className="mb-4">
+        {/* <div className="mb-4">
           <h2 className="text-xl font-semibold mb-2 text-newtext">Search Results </h2>
           <div>
             <table>
@@ -185,7 +186,7 @@ const ProfessorDashboard = ({ user, onSelect }) => {
               </tbody>
             </table>
           </div>
-        </div> */}
+        </div>  */}
       </div>
       <div className="mt-auto p-4">
         <Link to="/addcourse" className="btn btn-primary">

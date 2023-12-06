@@ -1,5 +1,4 @@
 import React, { useState, useEffect } from "react";
-import { Link } from "react-router-dom";
 
 const CourseDisplayPage = (props) => {
     //console.log(props);
@@ -16,7 +15,6 @@ const CourseDisplayPage = (props) => {
     });
 
     const [tags, setTags] = useState([]);
-    const [syllabus, setSyllabus] = useState ([]);
     const courseID = props;
 
     useEffect(() => {
@@ -100,9 +98,9 @@ const handledownloadFile = async (e) => {
                 {displayData.profName}
               </h2>
               <h3 className="text-l md:text-xl lg:text-2xl font-sans mt-2 text-newtext text-left">
-                {displayData.university} | {displayData.courseCode} | {displayData.terms}
+                {displayData.university} | {displayData.courseCode} |{" "}
+                {displayData.terms}
               </h3>
-              
             </div>
 
             {/* Course Description */}
@@ -146,12 +144,13 @@ const handledownloadFile = async (e) => {
             <div className="text-l md:text-xl lg:text-3xl pt-1 font-sans mb-4 text-newtext text-left">
               Syllabus:
               <br></br>
-                  <button className="mt-5 btn btn-warning"
-                  onClick={handledownloadFile}
-                  >Download</button>
+              <button
+                className="mt-5 btn-accent btn"
+                onClick={handledownloadFile}
+              >
+                Download
+              </button>
             </div>
-
-            
           </>
         ) : (
           <p>Loading...</p>

@@ -8,9 +8,6 @@ export default function Footer() {
           <a href="/aboutUs" className="mx-3 hover:opacity-80 duration-150">
             About us
           </a>
-          <a href="/aboutUs" className="mx-3 hover:opacity-80 duration-150">
-            Contact
-          </a>
         </div>
       </footer>
     );
