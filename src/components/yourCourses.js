@@ -9,7 +9,7 @@ const YourCourses = ({ user, onSelect }) => {
   const fetchCourses = async () => {
     try {
       const response = await fetch(
-        `http://127.0.0.1:5000/ViewCoursesByProfessorID?user=${user.user_id}`
+        `http://18.191.207.251:8000/ViewCoursesByProfessorID?user=${user.user_id}`
       );
 
       if (!response.ok) {
@@ -33,7 +33,7 @@ const YourCourses = ({ user, onSelect }) => {
     try {
       // Make a request to the Flask endpoint to remove the course association
       const response = await fetch(
-        `http://127.0.0.1:5000/removeCourse?userID=${userID}&courseID=${courseID}`,
+        `http://18.191.207.251:8000/removeCourse?userID=${userID}&courseID=${courseID}`,
         {
           method: "POST",
         }

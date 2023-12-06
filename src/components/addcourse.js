@@ -95,13 +95,9 @@ const AddCoursePage = ({ user }) => {
     formData.append("syllabus", syllabus, syllabus.name);
 
     try {
-      const response = await fetch("http://127.0.0.1:5000/addcourse", {
+      const response = await fetch("http://18.191.207.251:80000/addcourse", {
         method: "POST",
         body: formData,
-        // Set Content-Type header to let the server know it's form data
-        // headers: {
-        //   "Content-Type": "multipart/form-data",
-        // },
       });
 
       if (response.status === 200) {

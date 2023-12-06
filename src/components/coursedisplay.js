@@ -20,13 +20,16 @@ const CourseDisplayPage = (props) => {
     useEffect(() => {
         const fetchDisplayData = async (courseID) => {
             try {
-            const response = await fetch("http://127.0.0.1:5000/coursedisplay", {
+            const response = await fetch(
+              "http://18.191.207.251:8000/coursedisplay",
+              {
                 method: "POST",
                 headers: {
-                "Content-Type": "application/json",
+                  "Content-Type": "application/json",
                 },
                 body: JSON.stringify({ courseID: courseID }),
-            });
+              }
+            );
         
             if (response.status === 200) {
                 const data = await response.json();

@@ -16,7 +16,7 @@ const StudentDashboard = ({ user, onSelect }) => {
 
   const handleLogout = async () => {
     try {
-      const response = await fetch("http://127.0.0.1:5000/logout", {
+      const response = await fetch("http://18.191.207.251:8000/logout", {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
@@ -35,16 +35,19 @@ const StudentDashboard = ({ user, onSelect }) => {
   // Function to handle adding/removing favorite courses
   const handleFavoriteCourse = async (courseID) => {
     try {
-      const response = await fetch("http://127.0.0.1:5000/handlefavorite", {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify({
-          userID: user.user_id,
-          courseID: courseID,
-        }),
-      });
+      const response = await fetch(
+        "http://18.191.207.251:8000/handlefavorite",
+        {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify({
+            userID: user.user_id,
+            courseID: courseID,
+          }),
+        }
+      );
 
       if (response.status === 200) {
         // Update the list of favorite courses
@@ -65,7 +68,7 @@ const StudentDashboard = ({ user, onSelect }) => {
     e.preventDefault();
 
     try {
-      const response = await fetch("http://127.0.0.1:5000/searchCourse", {
+      const response = await fetch("http://18.191.207.251:8000/searchCourse", {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
@@ -86,13 +89,16 @@ const StudentDashboard = ({ user, onSelect }) => {
     e.preventDefault();
     // const [setFirstName, setLastName] = professorName.split(' ');
     try {
-      const response = await fetch("http://127.0.0.1:5000/searchProfessor", {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify({ professorName: professorName}),
-      });
+      const response = await fetch(
+        "http://18.191.207.251:8000/searchProfessor",
+        {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify({ professorName: professorName }),
+        }
+      );
       if (response.status === 200) {
         setprofResponseData(await response.json());
 
