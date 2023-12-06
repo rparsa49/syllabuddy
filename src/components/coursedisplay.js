@@ -12,17 +12,14 @@ const CourseDisplayPage = (props) => {
         university: "DUMMY",
         profName:"DUMMY",
         terms: ["DUMMY", "DUMMY", "DUMMY"],
+        courseID: "DUMMY"
     });
+
     const [tags, setTags] = useState([]);
-    const [terms, setTerms] = useState ([]);
-    const tagsValues = useState(null);
-    const termsValues = useState(null);
+    const [syllabus, setSyllabus] = useState ([]);
+    const courseID = props;
 
-//const CourseDisplay = (props) => {
     useEffect(() => {
-        //console.log(props)
-        const courseID = props;
-
         const fetchDisplayData = async (courseID) => {
             try {
             const response = await fetch("http://127.0.0.1:5000/coursedisplay", {
@@ -37,11 +34,7 @@ const CourseDisplayPage = (props) => {
                 const data = await response.json();
                 console.log(data);
 
-                // Parse the tags string into an array
-                const parsedTags = JSON.parse(data.tags).tags || [];
                 setDisplayData(data);
-                setTags(parsedTags);
-                console.log(parsedTags);
             } else console.log("display data: ", displayData);
             } catch (error) {
             console.log("Error while loading display page:", error);
@@ -51,6 +44,46 @@ const CourseDisplayPage = (props) => {
         fetchDisplayData(courseID);
 
     }, [props, setDisplayData]);
+
+const handledownloadFile = async (e) => {
+  e.preventDefault();
+  try {
+    const response = await fetch("http://127.0.0.1:5000/downloadFile", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify({ courseID }),
+    });
+
+    if (response.status === 200) {
+      // Create a blob from the response data
+      const blob = await response.blob();
+
+      // Create an anchor element
+      const link = document.createElement("a");
+
+      // Set the href attribute to a Blob URL
+      link.href = URL.createObjectURL(blob);
+
+      // Set the download attribute with the desired filename
+      link.download = "syllabus.pdf";
+
+      // Append the link to the document
+      document.body.appendChild(link);
+
+      // Programmatically click the link to trigger the download
+      link.click();
+
+      // Remove the link from the document
+      document.body.removeChild(link);
+    } else {
+      console.log("Error downloading syllabus");
+    }
+  } catch (error) {
+    console.log("Error while handling download:", error);
+  }
+};
 
 
   return (
@@ -67,8 +100,9 @@ const CourseDisplayPage = (props) => {
                 {displayData.profName}
               </h2>
               <h3 className="text-l md:text-xl lg:text-2xl font-sans mt-2 text-newtext text-left">
-                {displayData.university} | {displayData.courseCode}
+                {displayData.university} | {displayData.courseCode} | {displayData.terms}
               </h3>
+              
             </div>
 
             {/* Course Description */}
@@ -110,24 +144,14 @@ const CourseDisplayPage = (props) => {
 
             {/* Available Syllabi */}
             <div className="text-l md:text-xl lg:text-3xl pt-1 font-sans mb-4 text-newtext text-left">
-              Available Syllabi:
+              Syllabus:
+              <br></br>
+                  <button className="mt-5 btn btn-warning"
+                  onClick={handledownloadFile}
+                  >Download</button>
             </div>
 
-            <div>
-              {terms.map((item, index) => (
-                <div key={index} className="collapse collapse-arrow bg-newprim">
-                  <input type="radio" name="my-accordion-2" checked="checked" />
-                  <div className="collapse-title text-xl font-medium text-base-100">
-                    {terms[index]}
-                  </div>
-                  <div className="collapse-content text-base-100">
-                    <a href="TestPDFfile.pdf" download="syllabus.pdf">
-                      <button className="btn btn-warning">Download</button>
-                    </a>
-                  </div>
-                </div>
-              ))}
-            </div>
+            
           </>
         ) : (
           <p>Loading...</p>

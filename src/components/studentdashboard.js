@@ -6,8 +6,11 @@ const StudentDashboard = ({ user, onSelect }) => {
   const navigate = useNavigate();
   const [courseName, setCourseName] = useState("");
   const [responseData, setResponseData] = useState([]);
-  const [profResponseData, setProfResponseData] = useState([]);
-  const [professor, setProfessor] = useState("");
+  const [professorName, setProfessorName] = useState("");
+  const [profresponseData, setprofResponseData] = useState([]);
+  // const [firstName, setFirstName] = useState('');
+  // const [lastName, setLastName] = useState('');
+
   const [favoriteCourses, setFavoriteCourses] = useState([]);
   var user_id = user.user_name;
 
@@ -81,21 +84,22 @@ const StudentDashboard = ({ user, onSelect }) => {
 
   const handleSearchProfessor = async (e) => {
     e.preventDefault();
-
+    // const [setFirstName, setLastName] = professorName.split(' ');
     try {
       const response = await fetch("http://127.0.0.1:5000/searchProfessor", {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
         },
-        body: JSON.stringify({ courseName: courseName }),
+        body: JSON.stringify({ professorName: professorName}),
       });
-
       if (response.status === 200) {
-        setResponseData(await response.json());
+        setprofResponseData(await response.json());
+
+
       } else console.log("response data: ", responseData);
     } catch (error) {
-      console.log("Error while loading searching courses:", error);
+      console.log("Error while loading searching professor:", error);
     }
   };
 
@@ -205,7 +209,7 @@ const StudentDashboard = ({ user, onSelect }) => {
               <FaSearch />
             </button>
           </div>
-        </div>
+        </div>  
 
         <div className="mb-4">
           <h2 className="text-xl text-newtext font-semibold mb-2">Search Results </h2>
@@ -221,27 +225,14 @@ const StudentDashboard = ({ user, onSelect }) => {
                 </tr>
               </thead>
               <tbody>
-                {profResponseData.map((dataItem, index) => (
+                {profresponseData.map((dataItem, index) => (
                   <tr key={index}>
-                    <td className="border px-4 py-2">{dataItem.courseCode}</td>
-                    <td className="border px-4 py-2">{dataItem.courseName}</td>
                     <td className="border px-4 py-2">{`${dataItem.firstName} ${dataItem.lastName}`}</td>
-                    <td className="border px-4 py-2">{dataItem.yearTerm} </td>
-                    <td className="border px-4 py-2">
-                      {" "}
-                      <button
-                        className={`btn ${
-                          favoriteCourses.includes(dataItem.courseID)
-                            ? "btn-favorite"
-                            : "btn-primary"
-                        }`}
-                        onClick={() => handleFavoriteCourse(dataItem.courseID)}
-                      >
-                        {favoriteCourses.includes(dataItem.courseID)
-                          ? "Favorited"
-                          : "Favorite Course"}
-                      </button>
-                    </td>
+                    <td className="border px-4 py-2">{dataItem.email}</td>
+                    <td className="border px-4 py-2">{dataItem.phoneNumber}</td>
+                    <td className="border px-4 py-2">{dataItem.universityName} </td>
+                    <td className="border px-4 py-2">{dataItem.department} </td>
+                    <td className="border px-4 py-2">{dataItem.title} </td>
                   </tr>
                 ))}
               </tbody>

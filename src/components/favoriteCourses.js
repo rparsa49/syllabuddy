@@ -1,8 +1,9 @@
 import React, { useState, useEffect } from "react";
-import { Link } from "react-router-dom";
+import { useNavigate, Link } from "react-router-dom";
 
-const FavoriteCourses = ({ user }) => {
+const FavoriteCourses = ({ user, onSelect }) => {
   const [favoriteCourses, setFavoriteCourses] = useState([]);
+  const navigate = useNavigate();
 
   useEffect(() => {
     console.log(user);
@@ -19,6 +20,7 @@ const FavoriteCourses = ({ user }) => {
         }
 
         const data = await response.json();
+        console.log(data);
         setFavoriteCourses(data);
       } catch (error) {
         console.error("Error fetching favorite courses:", error);
@@ -72,6 +74,12 @@ const fetchFavoriteCourses = async (userID) => {
   }
 };
 
+const handleCourseDisplay = (courseID) => {
+    console.log(courseID);
+    onSelect(courseID);
+    navigate(`/coursedisplay`);
+  };
+
   return (
     <div className="bg-background text-gray-900 min-h-screen">
       <header className="bg-newsecond text-white p-4">
@@ -93,6 +101,14 @@ const fetchFavoriteCourses = async (userID) => {
                 {course.yearTerm}
               </div>
             </Link>
+            <button
+              onClick={() =>
+                handleCourseDisplay(course.courseID)
+              }
+              className="text-blue-500 btn-favorite border px-4 py-2 m-2"
+            >
+              View
+            </button>
             <button
               onClick={() =>
                 handleRemoveFromFavorites(user.user_id, course.courseID)

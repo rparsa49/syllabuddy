@@ -6,10 +6,10 @@ const ProfessorDashboard = ({ user, onSelect }) => {
   const navigate = useNavigate();
   const [courseName, setCourseName] = useState("");
   const [responseData, setResponseData] = useState([]);
-  const [profResponseData, setProfResponseData] = useState([]);
-  const [professor, setProfessor] = useState("");
+  // const [profResponseData, setProfResponseData] = useState([]);
+  // const [professor, setProfessor] = useState("");
   var user_id = user.user_name;
-
+  
   const handleLogout = async () => {
     try {
       const response = await fetch("http://127.0.0.1:5000/logout", {
@@ -49,25 +49,25 @@ const ProfessorDashboard = ({ user, onSelect }) => {
     }
   };
 
-  const handleSearchProfessor = async (e) => {
-    e.preventDefault();
+  // const handleSearchProfessor = async (e) => {
+  //   e.preventDefault();
 
-    try {
-      const response = await fetch("http://127.0.0.1:5000/searchProfessor", {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify({ courseName: courseName }),
-      });
+  //   try {
+  //     const response = await fetch("http://127.0.0.1:5000/searchProfessor", {
+  //       method: "POST",
+  //       headers: {
+  //         "Content-Type": "application/json",
+  //       },
+  //       body: JSON.stringify({ courseName: courseName }),
+  //     });
 
-      if (response.status === 200) {
-        setResponseData(await response.json());
-      } else console.log("response data: ", responseData);
-    } catch (error) {
-      console.log("Error while loading searching courses:", error);
-    }
-  };
+  //     if (response.status === 200) {
+  //       setResponseData(await response.json());
+  //     } else console.log("response data: ", responseData);
+  //   } catch (error) {
+  //     console.log("Error while loading searching courses:", error);
+  //   }
+  // };
 
 
   const handleCourseDisplay = (courseID) => {
@@ -86,7 +86,7 @@ const ProfessorDashboard = ({ user, onSelect }) => {
           <h2 className="text-xl font-semibold mb-2 text-newtext">Your courses</h2>
           <div
             className="bg-newprim text-newtext border border-gray-300 rounded-lg p-4 cursor-pointer"
-            onClick={() => navigate("/favorite-courses")}
+            onClick={() => navigate("/your-courses")}
           >
             <p>Click here to view the courses you have taught!</p>
           </div>
@@ -185,7 +185,7 @@ const ProfessorDashboard = ({ user, onSelect }) => {
               </tbody>
             </table>
           </div>
-        </div>
+        </div> */}
       </div>
       <div className="mt-auto p-4">
         <Link to="/addcourse" className="btn btn-primary">
