@@ -83,54 +83,55 @@ const ProfessorDashboard = ({ user, onSelect }) => {
       </header>
       <div className="p-4">
         <div className="mb-4">
-          <h2 className="text-xl font-semibold mb-2">Your courses</h2>
+          <h2 className="text-xl font-semibold mb-2 text-newtext">Your courses</h2>
           <div
-            className="bg-white border border-gray-300 rounded-lg p-4 cursor-pointer"
+            className="bg-newprim text-newtext border border-gray-300 rounded-lg p-4 cursor-pointer"
             onClick={() => navigate("/your-courses")}
           >
             <p>Click here to view the courses you have taught!</p>
           </div>
         </div>
         <div className="mb-4">
-          <h2 className="text-xl font-semibold mb-2">Search for Courses</h2>
+          <h2 className="text-xl font-semibold mb-2 text-newtext">Search for Courses</h2>
           <div className="flex">
             <input
               type="text"
               placeholder="Enter a course name or code..."
               onChange={(e) => setCourseName(e.target.value)}
-              className="border border-gray-300 p-2 rounded-md w-full"
+              className="border border-gray-300 text-newtext p-2 rounded-md w-full"
             />
             <button
               onClick={handleSearchCourse}
-              className="btn btn-secondary rounded-md ml-2"
+              className="btn btn-accent rounded-md ml-2"
             >
               <FaSearch />
             </button>
           </div>
         </div>
         <div className="mb-4">
-          <h2 className="text-xl font-semibold mb-2">Search Results</h2>
+          <h2 className="text-xl font-semibold mb-2 text-newtext">Search Results</h2>
           <div>
             <table>
               <thead>
                 <tr>
-                  <th className="border px-4 py-2">Course Code</th>
-                  <th className="border px-4 py-2">Course Name</th>
-                  <th className="border px-4 py-2">Instructor Name</th>
-                  <th className="border px-4 py-2">Year Term</th>
+                  <th className="border px-4 py-2 text-newtext">Course Code</th>
+                  <th className="border px-4 py-2 text-newtext">Course Name</th>
+                  <th className="border px-4 py-2 text-newtext">Instructor Name</th>
+                  <th className="border px-4 py-2 text-newtext">Year Term</th>
+                  <th className="border px-4 py-2 text-newtext">View Course</th>
                 </tr>
               </thead>
               <tbody>
                 {responseData.map((dataItem, index) => (
                   <tr key={index}>
-                    <td className="border px-4 py-2">{dataItem.courseCode}</td>
-                    <td className="border px-4 py-2">{dataItem.courseName}</td>
-                    <td className="border px-4 py-2">{`${dataItem.firstName} ${dataItem.lastName}`}</td>
-                    <td className="border px-4 py-2">{dataItem.yearTerm} </td>
-                    <td className="border px-4 py-2">
+                    <td className="border px-4 py-2 text-newtext">{dataItem.courseCode}</td>
+                    <td className="border px-4 py-2 text-newtext">{dataItem.courseName}</td>
+                    <td className="border px-4 py-2 text-newtext">{`${dataItem.firstName} ${dataItem.lastName}`}</td>
+                    <td className="border px-4 py-2 text-newtext">{dataItem.yearTerm} </td>
+                    <td className="border px-4 py-2 text-newtext">
                       {" "}
                       <button
-                        className={"btn btn-secondary"}
+                        className={"btn btn-primary"}
                         onClick={() => handleCourseDisplay(dataItem.courseID)}
                       >
                         View Course
@@ -142,18 +143,18 @@ const ProfessorDashboard = ({ user, onSelect }) => {
             </table>
           </div>
         </div>
-        {/* <div className="mb-4">
-          <h2 className="text-xl font-semibold mb-2">Search for Professors</h2>
+        <div className="mb-4">
+          <h2 className="text-xl font-semibold mb-2 text-newtext">Search for Professors</h2>
           <div className="flex">
             <input
               type="text"
               placeholder="Enter a professor's name..."
               onChange={(e) => setProfessor(e.target.value)}
-              className="border border-gray-300 p-2 rounded-md w-full"
+              className="border text-newtext border-gray-300 p-2 rounded-md w-full"
             />
             <button
               onClick={handleSearchProfessor}
-              className="btn btn-secondary rounded-md ml-2"
+              className="btn btn-accent rounded-md ml-2"
             >
               <FaSearch />
             </button>
@@ -161,24 +162,24 @@ const ProfessorDashboard = ({ user, onSelect }) => {
         </div>
 
         <div className="mb-4">
-          <h2 className="text-xl font-semibold mb-2">Seach Results </h2>
+          <h2 className="text-xl font-semibold mb-2 text-newtext">Search Results </h2>
           <div>
             <table>
               <thead>
                 <tr>
-                  <th className="border px-4 py-2">Course Code</th>
-                  <th className="border px-4 py-2">Course Name</th>
-                  <th className="border px-4 py-2">Instructor Name</th>
-                  <th className="border px-4 py-2">Year Term</th>
+                  <th className="border px-4 py-2 text-newtext">Course Code</th>
+                  <th className="border px-4 py-2 text-newtext">Course Name</th>
+                  <th className="border px-4 py-2 text-newtext">Instructor Name</th>
+                  <th className="border px-4 py-2 text-newtext">Year Term</th>
                 </tr>
               </thead>
               <tbody>
                 {profResponseData.map((dataItem, index) => (
                   <tr key={index}>
-                    <td className="border px-4 py-2">{dataItem.courseCode}</td>
-                    <td className="border px-4 py-2">{dataItem.courseName}</td>
-                    <td className="border px-4 py-2">{`${dataItem.firstName} ${dataItem.lastName}`}</td>
-                    <td className="border px-4 py-2">{dataItem.yearTerm} </td>
+                    <td className="border px-4 py-2 text-newtext">{dataItem.courseCode}</td>
+                    <td className="border px-4 py-2 text-newtext">{dataItem.courseName}</td>
+                    <td className="border px-4 py-2 text-newtext">{`${dataItem.firstName} ${dataItem.lastName}`}</td>
+                    <td className="border px-4 py-2 text-newtext">{dataItem.yearTerm} </td>
                   </tr>
                 ))}
               </tbody>
@@ -192,12 +193,12 @@ const ProfessorDashboard = ({ user, onSelect }) => {
         </Link>
       </div>
       <div className="mt-auto p-2">
-        <Link to="/editcourses" className="btn btn-accent ml-2">
+        <Link to="/editcourses" className="btn btn-primary ml-2">
           Edit Courses
         </Link>
       </div>
       <div className="mt-auto p-4">
-        <button className="block btn btn-secondary" onClick={handleLogout}>
+        <button className="block btn btn-primary" onClick={handleLogout}>
           Log Out
         </button>
       </div>

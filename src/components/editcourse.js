@@ -19,6 +19,7 @@ const EditCoursePage = ({ user }) => {
   const [editMode, setEditMode] = useState(false);
 
   useEffect(() => {
+    window.scrollTo(0,0)
     var user_id = user.user_id;
     const fetchData = async () => {
       try {
@@ -162,22 +163,22 @@ const EditCoursePage = ({ user }) => {
       <div className="flex-grow flex items-center justify-center">
         <div className="bg-white p-8 rounded-lg shadow-md w-full sm:w-2/3 lg:w-1/2 m-2">
           {editMode ? (
-            <form className="space-y-4" onSubmit={handleSubmit}>
+            <form className="space-y-4 max-w-md mx-auto text-center" onSubmit={handleSubmit}>
               <div className="text-center">
                 <h1 className="text-3xl font-semibold text-center mb-4 text-newsecond">
-                  Add a course
+                 Edit course
                 </h1>
                 <form className="space-y-4">
                   <div>
                     <label
                       htmlFor="University"
-                      className="block text-sm font-semibold text-text"
+                      className="block text-sm font-semibold text-text text-left ml-16"
                     >
                       Select a university below:
                     </label>
                     <select
                       name="University"
-                      className="select w-full max-w-xs"
+                      className="bg-newbg text-newtext select w-full max-w-xs"
                       value={selectedUniversity}
                       onChange={handleUniversityChange}
                     >
@@ -195,7 +196,7 @@ const EditCoursePage = ({ user }) => {
                   <div>
                     <label
                       htmlFor="courseCode"
-                      className="block text-sm font-semibold text-text"
+                      className="block text-sm font-semibold text-text text-left ml-16"
                     >
                       Enter the course code:
                     </label>
@@ -203,7 +204,7 @@ const EditCoursePage = ({ user }) => {
                       type="text"
                       name="courseCode"
                       placeholder="Course code...(ABC-123)"
-                      className="input input-bordered input-accent w-full max-w-xs"
+                      className="bg-newbg text-newtext input w-full max-w-xs"
                       value={courseCode}
                       onChange={handleCourseCodeChange}
                     />
@@ -212,7 +213,7 @@ const EditCoursePage = ({ user }) => {
                   <div>
                     <label
                       htmlFor="courseName"
-                      className="block text-sm font-semibold text-text"
+                      className="block text-sm font-semibold text-text text-left ml-16"
                     >
                       Enter the course name:
                     </label>
@@ -220,7 +221,7 @@ const EditCoursePage = ({ user }) => {
                       type="text"
                       name="courseName"
                       placeholder="Name of course..."
-                      className="input input-bordered input-accent w-full max-w-xs"
+                      className="bg-newbg text-newtext input w-full max-w-xs"
                       value={courseName}
                       onChange={handleCourseNameChange}
                     />
@@ -229,7 +230,7 @@ const EditCoursePage = ({ user }) => {
                   <div>
                     <label
                       htmlFor="averageGrade"
-                      className="block text-sm font-semibold text-text"
+                      className="block text-sm font-semibold text-text text-left ml-16"
                     >
                       Enter the average grade for this course:
                     </label>
@@ -237,7 +238,7 @@ const EditCoursePage = ({ user }) => {
                       type="text"
                       name="averageGrade"
                       placeholder="A percentage"
-                      className="input input-bordered input-accent w-full max-w-xs"
+                      className="bg-newbg text-newtext input w-full max-w-xs"
                       value={averageGrade}
                       onChange={handleAverageGradeChange}
                     />
@@ -246,7 +247,7 @@ const EditCoursePage = ({ user }) => {
                   <div>
                     <label
                       htmlFor="courseDesc"
-                      className="block text-sm font-semibold text-text"
+                      className="block text-sm font-semibold text-text text-left ml-16"
                     >
                       Enter a short description of this course:
                     </label>
@@ -254,7 +255,7 @@ const EditCoursePage = ({ user }) => {
                       type="text"
                       name="courseDesc"
                       placeholder="This course is..."
-                      className="input input-bordered input-accent w-full max-w-xs"
+                      className="bg-newbg text-newtext input w-full max-w-xs"
                       value={courseDesc}
                       onChange={handleCourseDescChange}
                     />
@@ -263,7 +264,7 @@ const EditCoursePage = ({ user }) => {
                   <div>
                     <label
                       htmlFor="profFirstname"
-                      className="block text-sm font-semibold text-text"
+                      className="block text-sm font-semibold text-text text-left ml-16"
                     >
                       Enter the firstname of the instructor for this course:
                     </label>
@@ -271,7 +272,7 @@ const EditCoursePage = ({ user }) => {
                       type="text"
                       name="profFirstname"
                       placeholder="Firstname"
-                      className="input input-bordered input-accent w-full max-w-xs"
+                      className="bg-newbg text-newtext input w-full max-w-xs"
                       value={profFirstname}
                       onChange={handleProfFirstnameChange}
                     />
@@ -280,7 +281,7 @@ const EditCoursePage = ({ user }) => {
                   <div>
                     <label
                       htmlFor="profLastname"
-                      className="block text-sm font-semibold text-text"
+                      className="block text-sm font-semibold text-text text-left ml-16"
                     >
                       Enter the lastname of the instructor for this course:
                     </label>
@@ -288,7 +289,7 @@ const EditCoursePage = ({ user }) => {
                       type="text"
                       name="profLastname"
                       placeholder="Lastname"
-                      className="input input-bordered input-accent w-full max-w-xs"
+                      className="bg-newbg text-newtext input w-full max-w-xs"
                       value={profLastname}
                       onChange={handleProfLastnameChange}
                     />
@@ -297,7 +298,7 @@ const EditCoursePage = ({ user }) => {
                   <div>
                     <label
                       htmlFor="tags"
-                      className="block text-sm font-semibold text-text"
+                      className="block text-sm font-semibold text-text text-left ml-16"
                     >
                       Enter the tags for this course:
                     </label>
@@ -305,7 +306,7 @@ const EditCoursePage = ({ user }) => {
                       type="text"
                       name="tags"
                       placeholder="Tag 1, Tag 2, Tag 3, ..."
-                      className="input input-bordered input-accent w-full max-w-xs"
+                      className="bg-newbg text-newtext input w-full max-w-xs"
                       value={tags}
                       onChange={handleTagsChange}
                     />
@@ -314,7 +315,7 @@ const EditCoursePage = ({ user }) => {
                   <div>
                     <label
                       htmlFor="term"
-                      className="block text-sm font-semibold text-text"
+                      className="block text-sm font-semibold text-text text-left ml-16"
                     >
                       Enter the term this course is offered for:
                     </label>
@@ -322,7 +323,7 @@ const EditCoursePage = ({ user }) => {
                       type="text"
                       name="term"
                       placeholder="Term"
-                      className="input input-bordered input-accent w-full max-w-xs"
+                      className="bg-newbg text-newtext input w-full max-w-xs"
                       value={term}
                       onChange={handleTermChange}
                     />
@@ -331,7 +332,7 @@ const EditCoursePage = ({ user }) => {
                   <div>
                     <label
                       htmlFor="syllabus"
-                      className="block text-sm font-semibold text-text"
+                      className="block text-sm font-semibold text-text text-left ml-16"
                     >
                       Select a syllabus in PDF form:
                     </label>
@@ -359,7 +360,7 @@ const EditCoursePage = ({ user }) => {
             </form>
           ) : (
             <>
-              <h2 className="text-xl font-semibold mb-4">Courses:</h2>
+              <h2 className="text-xl text-newtext font-semibold mb-4">Courses:</h2>
               <ul>
                 {courses.map((course, index) => (
                   <li
@@ -368,7 +369,7 @@ const EditCoursePage = ({ user }) => {
                     className="border border-gray-300 p-2 mb-2 rounded-md cursor-pointer flex justify-between items-center"
                   >
                     <div className="flex-grow">
-                      <div className="font-semibold">
+                      <div className="font-semibold text-newtext">
                         {course.courseName} - {course.courseCode}
                       </div>
                       <div className="text-sm text-gray-500">

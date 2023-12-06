@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect} from "react";
 import universities from "./universities.json";
 
 //
@@ -14,6 +14,10 @@ const AddCoursePage = ({ user }) => {
   const [term, setTerm] = useState(""); //course.term
   const [syllabus, setSyllabus] = useState(null); //course.syllabus
   const [addCourseError, setAddCourseError] = useState("");
+
+  useEffect(() => {
+    window.scrollTo(0,0)
+  })
 
   const handleUniversityChange = (e) => {
     setSelectedUniversity(e.target.value);
@@ -125,199 +129,198 @@ const AddCoursePage = ({ user }) => {
   return (
     <div className="min-h-screen flex flex-col bg-newbg">
       <div className="geometric-background flex-grow flex items-center justify-center">
-        <div className="bg-white p-8 rounded-lg shadow-md w-full sm:w-2/3 lg:w-1/2">
+        <div className="bg-background p-8 rounded-lg shadow-md w-full sm:w-2/3 lg:w-1/2">
           <h1 className="text-3xl font-semibold text-center mb-4 text-newsecond">
             Add a course
           </h1>
+                <form className="space-y-4 max-w-md mx-auto text-center">
+                  <div>
+                    <label
+                      htmlFor="University"
+                      className="block text-sm font-semibold text-text text-left ml-16"
+                    >
+                      Select a university below:
+                    </label>
+                    <select
+                      name="University"
+                      className="bg-newbg text-newtext select w-full max-w-xs"
+                      value={selectedUniversity}
+                      onChange={handleUniversityChange}
+                    >
+                      <option disabled value="">
+                        This course is given at...
+                      </option>
+                      {universities.map((uni, index) => (
+                        <option key={index} value={uni.institution}>
+                          {uni.institution}
+                        </option>
+                      ))}
+                    </select>
+                  </div>
 
-          <form className="space-y-4">
-            <div>
-              <label
-                htmlFor="University"
-                className="block text-sm font-semibold text-text"
-              >
-                Select a university below:
-              </label>
-              <select
-                name="University"
-                className="select w-full max-w-xs"
-                value={selectedUniversity}
-                onChange={handleUniversityChange}
-              >
-                <option disabled value="">
-                  This course is given at...
-                </option>
-                {universities.map((uni, index) => (
-                  <option key={index} value={uni.institution}>
-                    {uni.institution}
-                  </option>
-                ))}
-              </select>
-            </div>
+                  <div>
+                    <label
+                      htmlFor="courseCode"
+                      className="block text-sm font-semibold text-text text-left ml-16"
+                    >
+                      Enter the course code:
+                    </label>
+                    <input
+                      type="text"
+                      name="courseCode"
+                      placeholder="Course code...(ABC-123)"
+                      className="bg-newbg text-newtext input w-full max-w-xs"
+                      value={courseCode}
+                      onChange={handleCourseCodeChange}
+                    />
+                  </div>
 
-            <div>
-              <label
-                htmlFor="courseCode"
-                className="block text-sm font-semibold text-text"
-              >
-                Enter the course code:
-              </label>
-              <input
-                type="text"
-                name="courseCode"
-                placeholder="Course code...(ABC-123)"
-                className="input input-bordered input-accent w-full max-w-xs"
-                value={courseCode}
-                onChange={handleCourseCodeChange}
-              />
-            </div>
+                  <div>
+                    <label
+                      htmlFor="courseName"
+                      className="block text-sm font-semibold text-text text-left ml-16"
+                    >
+                      Enter the course name:
+                    </label>
+                    <input
+                      type="text"
+                      name="courseName"
+                      placeholder="Name of course..."
+                      className="bg-newbg text-newtext input w-full max-w-xs"
+                      value={courseName}
+                      onChange={handleCourseNameChange}
+                    />
+                  </div>
 
-            <div>
-              <label
-                htmlFor="courseName"
-                className="block text-sm font-semibold text-text"
-              >
-                Enter the course name:
-              </label>
-              <input
-                type="text"
-                name="courseName"
-                placeholder="Name of course..."
-                className="input input-bordered input-accent w-full max-w-xs"
-                value={courseName}
-                onChange={handleCourseNameChange}
-              />
-            </div>
+                  <div>
+                    <label
+                      htmlFor="averageGrade"
+                      className="block text-sm font-semibold text-text text-left ml-16"
+                    >
+                      Enter the average grade for this course:
+                    </label>
+                    <input
+                      type="text"
+                      name="averageGrade"
+                      placeholder="A percentage"
+                      className="bg-newbg text-newtext input w-full max-w-xs"
+                      value={averageGrade}
+                      onChange={handleAverageGradeChange}
+                    />
+                  </div>
 
-            <div>
-              <label
-                htmlFor="averageGrade"
-                className="block text-sm font-semibold text-text"
-              >
-                Enter the average grade for this course:
-              </label>
-              <input
-                type="text"
-                name="averageGrade"
-                placeholder="A percentage"
-                className="input input-bordered input-accent w-full max-w-xs"
-                value={averageGrade}
-                onChange={handleAverageGradeChange}
-              />
-            </div>
+                  <div>
+                    <label
+                      htmlFor="courseDesc"
+                      className="block text-sm font-semibold text-text text-left ml-16"
+                    >
+                      Enter a short description of this course:
+                    </label>
+                    <input
+                      type="text"
+                      name="courseDesc"
+                      placeholder="This course is..."
+                      className="bg-newbg text-newtext input w-full max-w-xs"
+                      value={courseDesc}
+                      onChange={handleCourseDescChange}
+                    />
+                  </div>
 
-            <div>
-              <label
-                htmlFor="courseDesc"
-                className="block text-sm font-semibold text-text"
-              >
-                Enter a short description of this course:
-              </label>
-              <input
-                type="text"
-                name="courseDesc"
-                placeholder="This course is..."
-                className="input input-bordered input-accent w-full max-w-xs"
-                value={courseDesc}
-                onChange={handleCourseDescChange}
-              />
-            </div>
+                  <div>
+                    <label
+                      htmlFor="profFirstname"
+                      className="block text-sm font-semibold text-text text-left ml-16"
+                    >
+                      Enter the firstname of the instructor for this course:
+                    </label>
+                    <input
+                      type="text"
+                      name="profFirstname"
+                      placeholder="Firstname"
+                      className="bg-newbg text-newtext input w-full max-w-xs"
+                      value={profFirstname}
+                      onChange={handleProfFirstnameChange}
+                    />
+                  </div>
 
-            <div>
-              <label
-                htmlFor="profFirstname"
-                className="block text-sm font-semibold text-text"
-              >
-                Enter the firstname of the instructor for this course:
-              </label>
-              <input
-                type="text"
-                name="profFirstname"
-                placeholder="Firstname"
-                className="input input-bordered input-accent w-full max-w-xs"
-                value={profFirstname}
-                onChange={handleProfFirstnameChange}
-              />
-            </div>
+                  <div>
+                    <label
+                      htmlFor="profLastname"
+                      className="block text-sm font-semibold text-text text-left ml-16"
+                    >
+                      Enter the lastname of the instructor for this course:
+                    </label>
+                    <input
+                      type="text"
+                      name="profLastname"
+                      placeholder="Lastname"
+                      className="bg-newbg text-newtext input w-full max-w-xs"
+                      value={profLastname}
+                      onChange={handleProfLastnameChange}
+                    />
+                  </div>
 
-            <div>
-              <label
-                htmlFor="profLastname"
-                className="block text-sm font-semibold text-text"
-              >
-                Enter the lastname of the instructor for this course:
-              </label>
-              <input
-                type="text"
-                name="profLastname"
-                placeholder="Lastname"
-                className="input input-bordered input-accent w-full max-w-xs"
-                value={profLastname}
-                onChange={handleProfLastnameChange}
-              />
-            </div>
+                  <div>
+                    <label
+                      htmlFor="tags"
+                      className="block text-sm font-semibold text-text text-left ml-16"
+                    >
+                      Enter the tags for this course:
+                    </label>
+                    <input
+                      type="text"
+                      name="tags"
+                      placeholder="Tag 1, Tag 2, Tag 3, ..."
+                      className="bg-newbg text-newtext input w-full max-w-xs"
+                      value={tags}
+                      onChange={handleTagsChange}
+                    />
+                  </div>
 
-            <div>
-              <label
-                htmlFor="tags"
-                className="block text-sm font-semibold text-text"
-              >
-                Enter the tags for this course:
-              </label>
-              <input
-                type="text"
-                name="tags"
-                placeholder="Tag 1, Tag 2, Tag 3, ..."
-                className="input input-bordered input-accent w-full max-w-xs"
-                value={tags}
-                onChange={handleTagsChange}
-              />
-            </div>
+                  <div>
+                    <label
+                      htmlFor="term"
+                      className="block text-sm font-semibold text-text text-left ml-16"
+                    >
+                      Enter the term this course is offered for:
+                    </label>
+                    <input
+                      type="text"
+                      name="term"
+                      placeholder="Term"
+                      className="bg-newbg text-newtext input w-full max-w-xs"
+                      value={term}
+                      onChange={handleTermChange}
+                    />
+                  </div>
 
-            <div>
-              <label
-                htmlFor="term"
-                className="block text-sm font-semibold text-text"
-              >
-                Enter the term this course is offered for:
-              </label>
-              <input
-                type="text"
-                name="term"
-                placeholder="Term"
-                className="input input-bordered input-accent w-full max-w-xs"
-                value={term}
-                onChange={handleTermChange}
-              />
-            </div>
+                  <div>
+                    <label
+                      htmlFor="syllabus"
+                      className="block text-sm font-semibold text-text text-left ml-16"
+                    >
+                      Select a syllabus in PDF form:
+                    </label>
+                    <input
+                      type="file"
+                      id="fileInput"
+                      onChange={handleSyllabusChange}
+                    />
+                  </div>
 
-            <div>
-              <label
-                htmlFor="syllabus"
-                className="block text-sm font-semibold text-text"
-              >
-                Select a syllabus in PDF form:
-              </label>
-              <input
-                type="file"
-                id="fileInput"
-                onChange={handleSyllabusChange}
-              />
-            </div>
-
-            <div className="text-center">
-              <button
-                className="btn btn-secondary"
-                type="submit"
-                onClick={handleSubmit}
-              >
-                Submit
-              </button>
-              {addCourseError && (
-                <p className="text-red-600">{addCourseError}</p>
-              )}
-            </div>
-          </form>
+                  <div className="text-center">
+                    <button
+                      className="btn btn-secondary"
+                      type="submit"
+                      onClick={handleSubmit}
+                    >
+                      Submit
+                    </button>
+                    {addCourseError && (
+                      <p className="text-red-600">{addCourseError}</p>
+                    )}
+                  </div>
+                </form>
         </div>
       </div>
     </div>

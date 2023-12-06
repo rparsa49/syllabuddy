@@ -5,7 +5,7 @@ const AboutUs = () => {
   const navigate = useNavigate();
 
   return (
-    <div className="bg-background text-gray-900 p-4 sm:p-8">
+    <div className="bg-newbg text-newtext p-4 sm:p-8">
       <h1 className="text-3xl font-bold mb-4">
         Welcome to Team WeAreBadAtNames
       </h1>
@@ -118,7 +118,7 @@ const AboutUs = () => {
         main point of contact. Her email is royaparsa294@gmail.com
       </p>
       <button
-        className="bg-primary text-white font-semibold py-2 px-4 rounded-md hover-bg-primary-dark"
+        className="bg-newprim text-white font-semibold py-2 px-4 rounded-md hover-bg-primary-dark"
         onClick={() => navigate("/")}
       >
         Return Home

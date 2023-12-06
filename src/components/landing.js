@@ -1,7 +1,10 @@
-import React from "react";
+import React, { useEffect } from "react";
 import { Link } from "react-router-dom";
 
 const Landing = () => {
+  useEffect(() => {
+    window.scrollTo(0,0)
+  })
   return (
     <div className="min-h-screen flex flex-col text-white">
       <main className="container mx-auto px-6 pt-16 flex-1 text-center h-screen">
@@ -14,7 +17,7 @@ const Landing = () => {
         <h1 className="text-l md:text-2xl lg:text-4xl text-black">
           To continue, register or log in!
         </h1>
-        <div className="container mx-auto p-6 flex items-center justify-evenly">
+        <div className="container mt-4 mx-auto p-6 flex items-center justify-evenly">
           <Link to="/login">
             <button className="btn btn-info btn-xs sm:btn-sm md:btn-md lg:btn-lg">
               Log in

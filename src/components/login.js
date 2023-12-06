@@ -1,10 +1,14 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 
 const Login = ({ onLogin }) => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const navigate = useNavigate();
+  
+  useEffect(() => {
+    window.scrollTo(0,70)
+  })
 
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -39,18 +43,18 @@ const Login = ({ onLogin }) => {
   return (
     <div>
       <section id="login">
-        <div className="min-h-screen flex flex-col bg-background">
+        <div className="min-h-screen flex flex-col bg-newbg">
           <div className=" flex-grow flex items-center justify-center">
-            <div className="bg-white p-8 rounded-lg shadow-md w-full sm:w-2/3 lg:w-1/2">
+            <div className="bg-background p-8 rounded-lg shadow-md w-full sm:w-2/3 lg:w-1/2">
               <header>
                 <h1 className="text-3xl font-semibold text-center mb-10 text-primary">
                   Login to Syllabuddy
                 </h1>
               </header>
-              <form>
+              <form className="space-y-4 max-w-md mx-auto text-center">
                 <div className="mb-10">
                   <label
-                    className="block text-sm font-semibold text-text"
+                    className="block text-sm font-semibold text-text text-left ml-16" 
                     htmlFor="email"
                   >
                     Email:
@@ -68,7 +72,7 @@ const Login = ({ onLogin }) => {
 
                 <div className="mb-4">
                   <label
-                    className="block text-sm font-semibold text-text"
+                    className="block text-sm font-semibold text-text text-left ml-16"
                     htmlFor="password"
                   >
                     Password:
@@ -86,7 +90,7 @@ const Login = ({ onLogin }) => {
 
                 <div className="mb-4 flex justify-center ">
                   <button
-                    className=" block btn btn-secondary "
+                    className=" block btn btn-primary "
                     onClick={handleSubmit}
                     type="submit"
                   >
