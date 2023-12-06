@@ -95,7 +95,7 @@ const AddCoursePage = ({ user }) => {
     formData.append("syllabus", syllabus, syllabus.name);
 
     try {
-      const response = await fetch("http://18.191.207.251:80000/addcourse", {
+      const response = await fetch("https://18.191.207.251:80000/addcourse", {
         method: "POST",
         body: formData,
       });

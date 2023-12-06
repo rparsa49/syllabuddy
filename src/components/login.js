@@ -19,7 +19,7 @@ const Login = ({ onLogin }) => {
     };
 
     try {
-      const response = await fetch("http://18.191.207.251:8000/login", {
+      const response = await fetch("https://18.191.207.251:8000/login", {
         method: "POST",
         headers: {
           "Content-Type": "application/json",

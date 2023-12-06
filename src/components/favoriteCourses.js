@@ -13,7 +13,7 @@ const FavoriteCourses = ({ user, onSelect }) => {
     const fetchFavoriteCourses = async () => {
       try {
         const response = await fetch(
-          `http://18.191.207.251:8000/Viewfavouritecourses?user=${user_id}`
+          `https://18.191.207.251:8000/Viewfavouritecourses?user=${user_id}`
         );
         if (!response.ok) {
           throw new Error("Failed to fetch favorite courses");
@@ -33,7 +33,7 @@ const FavoriteCourses = ({ user, onSelect }) => {
 const handleRemoveFromFavorites = async (userID, courseID) => {
   try {
     // Make a request to the Flask endpoint to remove the course from favorites
-    const response = await fetch("http://18.191.207.251:8000/handlefavorite", {
+    const response = await fetch("https://18.191.207.251:8000/handlefavorite", {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
@@ -59,7 +59,7 @@ const handleRemoveFromFavorites = async (userID, courseID) => {
 const fetchFavoriteCourses = async (userID) => {
   try {
     const response = await fetch(
-      `http://18.191.207.251:8000/Viewfavouritecourses?user=${userID}`
+      `https://18.191.207.251:8000/Viewfavouritecourses?user=${userID}`
     );
 
     if (!response.ok) {

@@ -16,7 +16,7 @@ const StudentDashboard = ({ user, onSelect }) => {
 
   const handleLogout = async () => {
     try {
-      const response = await fetch("http://18.191.207.251:8000/logout", {
+      const response = await fetch("https://18.191.207.251:8000/logout", {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
@@ -36,7 +36,7 @@ const StudentDashboard = ({ user, onSelect }) => {
   const handleFavoriteCourse = async (courseID) => {
     try {
       const response = await fetch(
-        "http://18.191.207.251:8000/handlefavorite",
+        "https://18.191.207.251:8000/handlefavorite",
         {
           method: "POST",
           headers: {
@@ -68,7 +68,7 @@ const StudentDashboard = ({ user, onSelect }) => {
     e.preventDefault();
 
     try {
-      const response = await fetch("http://18.191.207.251:8000/searchCourse", {
+      const response = await fetch("https://18.191.207.251:8000/searchCourse", {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
@@ -90,7 +90,7 @@ const StudentDashboard = ({ user, onSelect }) => {
     // const [setFirstName, setLastName] = professorName.split(' ');
     try {
       const response = await fetch(
-        "http://18.191.207.251:8000/searchProfessor",
+        "https://18.191.207.251:8000/searchProfessor",
         {
           method: "POST",
           headers: {

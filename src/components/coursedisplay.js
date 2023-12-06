@@ -22,7 +22,7 @@ const CourseDisplayPage = (props) => {
     const fetchDisplayData = async (courseID) => {
       try {
         const response = await fetch(
-          "http://18.191.207.251:8000/coursedisplay",
+          "https://18.191.207.251:8000/coursedisplay",
           {
             method: "POST",
             headers: {
@@ -50,7 +50,7 @@ const CourseDisplayPage = (props) => {
   const handledownloadFile = async (e) => {
     e.preventDefault();
     try {
-      const response = await fetch("http://127.0.0.1:5000/downloadFile", {
+      const response = await fetch("https://127.0.0.1:5000/downloadFile", {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
