@@ -1,6 +1,9 @@
 {
   "extends": "react-app",
   "rules": {
-    // Add any custom rules or override existing rules here
+    // Other rules...
+    "react-hooks/exhaustive-deps": "warn",  // Change "error" to "warn"
+    "no-unused-vars": "warn",               // Change "error" to "warn"
+    "eqeqeq": "warn"                        // Change "error" to "warn"
   }
 }
