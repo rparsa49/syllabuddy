@@ -9,7 +9,7 @@ const ProfessorDashboard = ({ user, onSelect }) => {
   // const [profResponseData, setProfResponseData] = useState([]);
   // const [professor, setProfessor] = useState("");
   var user_id = user.user_name;
-
+  
   const handleLogout = async () => {
     try {
       const response = await fetch("http://127.0.0.1:5000/logout", {
@@ -86,7 +86,7 @@ const ProfessorDashboard = ({ user, onSelect }) => {
           <h2 className="text-xl font-semibold mb-2">Your courses</h2>
           <div
             className="bg-white border border-gray-300 rounded-lg p-4 cursor-pointer"
-            onClick={() => navigate("/favorite-courses")}
+            onClick={() => navigate("/your-courses")}
           >
             <p>Click here to view the courses you have taught!</p>
           </div>

@@ -22,10 +22,7 @@ const CourseDisplayPage = (props) => {
     const [syllabus, setSyllabus] = useState ([]);
     const courseID = props;
 
-//const CourseDisplay = (props) => {
     useEffect(() => {
-        //console.log(props)
-
         const fetchDisplayData = async (courseID) => {
             try {
             const response = await fetch("http://127.0.0.1:5000/coursedisplay", {

@@ -17,6 +17,7 @@ import FavoriteCourses from "./components/favoriteCourses";
 import ProfessorDashboard from "./components/professorDashboard";
 import AddCoursePage from "./components/addcourse";
 import EditCoursePage from "./components/editcourse";
+import YourCourses from "./components/yourCourses";
 
 function App() {
   const [user, setUser] = React.useState(null);
@@ -31,7 +32,10 @@ function App() {
       <Routes>
         <Route path="/" element={<LandingPage />} />
         <Route path="/register" element={<RegistrationPage />} />
-        <Route path="/coursedisplay" element={<CourseDisplayPage courseID = {course}/>} />
+        <Route
+          path="/coursedisplay"
+          element={<CourseDisplayPage courseID={course} />}
+        />
         <Route
           path="/login"
           element={
@@ -46,7 +50,7 @@ function App() {
           path="/addcourse"
           element={
             isAuthenticated && user && user.role === "professor" ? (
-              <AddCoursePage user={user}/>
+              <AddCoursePage user={user} />
             ) : (
               <Navigate to="/login" />
             )
@@ -93,7 +97,27 @@ function App() {
           path="/favorite-courses"
           element={
             isAuthenticated ? (
-              <FavoriteCourses user={user} />
+              <FavoriteCourses
+                user={user}
+                onSelect={(course) => {
+                  setCourse(course);
+                }}
+              />
+            ) : (
+              <Navigate to="/login" />
+            )
+          }
+        />
+        <Route
+          path="/your-courses"
+          element={
+            isAuthenticated ? (
+              <YourCourses
+                user={user}
+                onSelect={(course) => {
+                  setCourse(course);
+                }}
+              />
             ) : (
               <Navigate to="/login" />
             )
