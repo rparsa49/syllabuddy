@@ -19,7 +19,7 @@ const EditCoursePage = ({ user }) => {
   const [editMode, setEditMode] = useState(false);
 
   useEffect(() => {
-    window.scrollTo(0,0)
+    window.scrollTo(0, 0);
     var user_id = user.user_id;
     const fetchData = async () => {
       try {
@@ -38,6 +38,7 @@ const EditCoursePage = ({ user }) => {
     };
 
     fetchData();
+    // eslint-disable-next-line
   }, []);
 
   const handleUniversityChange = (e) => {

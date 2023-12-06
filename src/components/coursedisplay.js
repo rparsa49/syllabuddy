@@ -1,96 +1,96 @@
 import React, { useState, useEffect } from "react";
 
 const CourseDisplayPage = (props) => {
-    //console.log(props);
-    const [displayData, setDisplayData] = useState({
-        courseName: "DUMMY",
-        courseCode: "DUMMY",
-        averageGrade: "0",
-        tags: ["DUMMY", "DUMMY", "DUMMY", "DUMMY", "DUMMY"],
-        courseDesc: "DUMMY",
-        university: "DUMMY",
-        profName:"DUMMY",
-        terms: ["DUMMY", "DUMMY", "DUMMY"],
-        courseID: "DUMMY"
-    });
+  //console.log(props);
+  const [displayData, setDisplayData] = useState({
+    courseName: "DUMMY",
+    courseCode: "DUMMY",
+    averageGrade: "0",
+    tags: ["DUMMY", "DUMMY", "DUMMY", "DUMMY", "DUMMY"],
+    courseDesc: "DUMMY",
+    university: "DUMMY",
+    profName: "DUMMY",
+    terms: ["DUMMY", "DUMMY", "DUMMY"],
+    courseID: "DUMMY",
+  });
 
-    const [tags, setTags] = useState([]);
-    const courseID = props;
+  // eslint-disable-next-line
+  const [tags, setTags] = useState([]);
+  const courseID = props;
 
-    useEffect(() => {
-        const fetchDisplayData = async (courseID) => {
-            try {
-            const response = await fetch(
-              "http://18.191.207.251:8000/coursedisplay",
-              {
-                method: "POST",
-                headers: {
-                  "Content-Type": "application/json",
-                },
-                body: JSON.stringify({ courseID: courseID }),
-              }
-            );
-        
-            if (response.status === 200) {
-                const data = await response.json();
-                console.log(data);
+  useEffect(() => {
+    const fetchDisplayData = async (courseID) => {
+      try {
+        const response = await fetch(
+          "http://18.191.207.251:8000/coursedisplay",
+          {
+            method: "POST",
+            headers: {
+              "Content-Type": "application/json",
+            },
+            body: JSON.stringify({ courseID: courseID }),
+          }
+        );
 
-                setDisplayData(data);
-            } else console.log("display data: ", displayData);
-            } catch (error) {
-            console.log("Error while loading display page:", error);
-            }
-        };
+        if (response.status === 200) {
+          const data = await response.json();
+          console.log(data);
 
-        fetchDisplayData(courseID);
+          setDisplayData(data);
+        } else console.log("display data: ", displayData);
+      } catch (error) {
+        console.log("Error while loading display page:", error);
+      }
+    };
 
-    }, [props, setDisplayData]);
+    fetchDisplayData(courseID);
+    // eslint-disable-next-line
+  }, [props, setDisplayData]);
 
-const handledownloadFile = async (e) => {
-  e.preventDefault();
-  try {
-    const response = await fetch("http://127.0.0.1:5000/downloadFile", {
-      method: "POST",
-      headers: {
-        "Content-Type": "application/json",
-      },
-      body: JSON.stringify({ courseID }),
-    });
+  const handledownloadFile = async (e) => {
+    e.preventDefault();
+    try {
+      const response = await fetch("http://127.0.0.1:5000/downloadFile", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({ courseID }),
+      });
 
-    if (response.status === 200) {
-      // Create a blob from the response data
-      const blob = await response.blob();
+      if (response.status === 200) {
+        // Create a blob from the response data
+        const blob = await response.blob();
 
-      // Create an anchor element
-      const link = document.createElement("a");
+        // Create an anchor element
+        const link = document.createElement("a");
 
-      // Set the href attribute to a Blob URL
-      link.href = URL.createObjectURL(blob);
+        // Set the href attribute to a Blob URL
+        link.href = URL.createObjectURL(blob);
 
-      // Set the download attribute with the desired filename
-      link.download = "syllabus.pdf";
+        // Set the download attribute with the desired filename
+        link.download = "syllabus.pdf";
 
-      // Append the link to the document
-      document.body.appendChild(link);
+        // Append the link to the document
+        document.body.appendChild(link);
 
-      // Programmatically click the link to trigger the download
-      link.click();
+        // Programmatically click the link to trigger the download
+        link.click();
 
-      // Remove the link from the document
-      document.body.removeChild(link);
-    } else {
-      console.log("Error downloading syllabus");
+        // Remove the link from the document
+        document.body.removeChild(link);
+      } else {
+        console.log("Error downloading syllabus");
+      }
+    } catch (error) {
+      console.log("Error while handling download:", error);
     }
-  } catch (error) {
-    console.log("Error while handling download:", error);
-  }
-};
-
+  };
 
   return (
     <div className="min-h-screen flex flex-col bg-newbg">
       <main className="container mx-auto px-6 pt-10 flex-1 h-screen">
-        {displayData.courseCode != "DUMMY" ? (
+        {displayData.courseCode !== "DUMMY" ? (
           <>
             {/* Course name, code, and university name */}
             <div className="text-left mb-5">

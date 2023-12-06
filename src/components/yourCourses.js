@@ -27,6 +27,7 @@ const YourCourses = ({ user, onSelect }) => {
   // Use useEffect to fetch courses when the user prop changes
   useEffect(() => {
     fetchCourses();
+    // eslint-disable-next-line
   }, [user]);
 
   const handleRemoveFromFavorites = async (userID, courseID) => {
