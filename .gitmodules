@@ -1,0 +1,3 @@
+[submodule "syllabuddy-backend"]
+	path = syllabuddy-backend
+	url = https://github.com/rparsa49/syllabuddy-backend.git
