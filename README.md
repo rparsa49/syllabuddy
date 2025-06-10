@@ -1,60 +1,104 @@
-# Syllabuddy 
 
-Syllabuddy is designed to make the syllabi management process easier for college students and professors. It offers a user-friendly and accessible platform to simplify access to syllabus information.
+# Syllabuddy User Manual
 
-## Table of Contents
+**Team WeAreBadAtNames**  
+**12/06/2023**
 
-- [About](#about)
-- [Features](#features)
-- [Getting Started](#getting-started)
-  - [Prerequisites](#prerequisites)
-  - [Installation](#installation)
-- [Usage](#usage)
-- [Contributing](#contributing)
-- [License](#license)
+---
 
-## About
+## Installation
 
-Syllabuddy is a web application that simplifies the management of syllabi for college students and professors. It offers a user-friendly platform where users can:
+To deploy Syllabuddy, install the following dependencies:
 
-- View syllabi for various courses.
-- Upload syllabi to share with the community.
-- Download syllabi for their own reference.
+1. **ReactJS**  
+   Follow this guide: [ReactJS Installation](https://react.dev/learn/start-a-new-react-project)
 
-## Features
+2. **TailwindCSS**  
+   Follow this guide: [TailwindCSS Installation](https://tailwindcss.com/docs/installation)
 
-The Syllabuddy Frontend offers the following features:
+3. **Python & Flask**  
+   - Download Python: [Python Downloads](https://www.python.org/downloads/)  
+   - Install Flask:  
+     ```bash
+     pip install Flask
+     ```
 
-- User registration and login functionality.
-- Role selection (Student or Professor) to customize the user experience.
-- Access to a database of syllabi from various universities.
-- An intuitive user interface for easy navigation.
+### Clone the Repositories
 
-## Getting Started
+- Frontend: [https://github.com/rparsa49/syllabuddy](https://github.com/rparsa49/syllabuddy)
+- Backend: [https://github.com/rparsa49/syllabuddy-backend](https://github.com/rparsa49/syllabuddy-backend)
 
-To get started with the Syllabuddy Frontend, follow these steps:
+Open Visual Studio Code and run:
 
-### Prerequisites
+```bash
+git clone <frontend link>
+git clone <backend link>
+```
 
-- A modern web browser (e.g., Chrome, Firefox).
-- Access to the internet.
+Open both projects in separate Visual Studio Code windows.
 
-### Installation
+### Running the App
 
-The Syllabuddy Frontend does not require installation, as it is a web-based application. Simply access it using a web browser by visiting the provided URL.
+- In the backend window: press `Run Python File`
+- In the frontend window terminal:
 
-## Usage
+```bash
+npm start
+```
 
-1. Open a web browser.
-2. Visit the Syllabuddy Frontend website.
-3. Register for an account or log in with your credentials.
-4. Select your role (Student or Professor).
-5. Explore syllabi, upload syllabi, and download syllabi as needed.
-6. Enjoy the Syllabuddy experience!
+Syllabuddy should now be available at `http://localhost:3000`.
 
-## License
+---
 
-This project is licensed under the [MIT License](LICENSE).
+## Overview
 
+Syllabuddy is a course management system designed for students and professors.
 
+### For Students
 
+- Browse university courses
+- Search by course name or professor
+- View average grades, tags, descriptions, and syllabus
+- Favorite courses for quick access on the dashboard
+
+### For Professors
+
+- Upload and edit courses
+- Search courses (no favoriting)
+
+---
+
+## Main Usage Scenario
+
+### Logging in and Favoriting a Course
+
+1. Visit: `http://localhost:3000`
+2. Click **Log In**
+3. Enter email and password
+4. Search for a course (e.g., “Database Management Systems”)
+5. Click **Favorite Course**
+6. View favorites from the **Favorite Course** tab
+
+---
+
+## Additional Scenarios
+
+### Registering a New Account
+
+1. Visit the landing page
+2. Click **Register**
+3. Fill out the form and click **Submit**
+4. Log in using your new credentials
+
+---
+
+### Adding a Course as a Professor
+
+1. Log in as a professor
+2. Click **Add Course**
+3. Fill out the form and submit
+4. View your course via the **Your Courses** tab
+
+You can **View** or **Delete** your courses from here.
+
+---
